@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<tabs>
+    <tab
+        id="@+id/tab_movies"
+        title="Movies" />
+    <tab
+        id="@+id/tab_movies_second"
+        title="//TODO" />
+    <tab
+        id="@+id/tab_main"
+        title="Main" />
+    <tab
+        id="@+id/tab_series"
+        title="TV Series" />
+    <tab
+        id="@+id/tab_series_second"
+        title="//TODO" />
+</tabs>
