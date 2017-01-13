@@ -7,9 +7,6 @@ import android.os.Bundle;
 
 import a501.itis.kpfu.ru.themoviedbapplication.Interface.TaskListenerInterface;
 
-/**
- * Created by Марат on 13.01.2017.
- */
 
 public class PopularRequestFilmsFragment extends Fragment {
     TaskListenerInterface mTaskListener;

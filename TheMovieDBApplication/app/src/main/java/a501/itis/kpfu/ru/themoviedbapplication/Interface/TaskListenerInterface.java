@@ -1,6 +1,9 @@
 package a501.itis.kpfu.ru.themoviedbapplication.Interface;
 
 
-public interface TaskListenerInterface {
+import java.util.List;
 
+public interface TaskListenerInterface {
+    void onTaskFinish(List list, int id);
+    void onTaskStarted();
 }

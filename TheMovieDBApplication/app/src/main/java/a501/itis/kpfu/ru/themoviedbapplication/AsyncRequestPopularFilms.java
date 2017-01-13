@@ -14,9 +14,6 @@ import retrofit2.Call;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-/**
- * Created by Марат on 13.01.2017.
- */
 
 public class AsyncRequestPopularFilms extends AsyncTask<Void, Void, Void> {
     TaskListenerInterface mTaskListener;
@@ -49,7 +46,7 @@ public class AsyncRequestPopularFilms extends AsyncTask<Void, Void, Void> {
 
     protected void onPostExecute(Void integer) {
         super.onPostExecute(integer);
-        mTaskListener.onTaskFinish(listOfFilms);
+        mTaskListener.onTaskFinish(listOfFilms, 2);
 
     }
 
