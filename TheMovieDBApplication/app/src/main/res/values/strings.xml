@@ -1,5 +1,5 @@
 <resources>
     <string name="app_name">TheMovieDBApplication</string>
-    <string name="text_films">Фильмы</string>
-    <string name="text_tv_series">Сериалы</string>
+    <string name="text_films">Популярные фильмы</string>
+    <string name="text_tv_series">Популярные сериалы</string>
 </resources>
