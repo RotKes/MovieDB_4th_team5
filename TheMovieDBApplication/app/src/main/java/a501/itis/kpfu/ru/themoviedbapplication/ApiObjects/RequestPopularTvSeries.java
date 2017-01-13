@@ -13,7 +13,7 @@ public class RequestPopularTvSeries {
     private int page;
     @SerializedName("results")
     @Expose
-    private List<RequestPopularFilmObject> results = null;
+    private List<RequestPopularTvSeriesObject> results = null;
     @SerializedName("total_results")
     @Expose
     private int totalResults;
@@ -29,11 +29,11 @@ public class RequestPopularTvSeries {
         this.page = page;
     }
 
-    public List<RequestPopularFilmObject> getResults() {
+    public List<RequestPopularTvSeriesObject> getResults() {
         return results;
     }
 
-    public void setResults(List<RequestPopularFilmObject> results) {
+    public void setResults(List<RequestPopularTvSeriesObject> results) {
         this.results = results;
     }
 
