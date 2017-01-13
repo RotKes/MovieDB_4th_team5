@@ -5,7 +5,7 @@ import android.app.Fragment;
 import android.content.Context;
 import android.os.Bundle;
 
-import a501.itis.kpfu.ru.themoviedbapplication.Interface.TaskListenerInterface;
+import a501.itis.kpfu.ru.themoviedbapplication.interfaces.TaskListenerInterface;
 
 
 public class PopularRequestFilmsFragment extends Fragment {

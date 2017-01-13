@@ -1,10 +1,10 @@
-package a501.itis.kpfu.ru.themoviedbapplication.ApiObjects;
+package a501.itis.kpfu.ru.themoviedbapplication.apiObjects;
 
-
-import java.util.List;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+
+import java.util.List;
 
 public class RequestPopularTvSeries {
 

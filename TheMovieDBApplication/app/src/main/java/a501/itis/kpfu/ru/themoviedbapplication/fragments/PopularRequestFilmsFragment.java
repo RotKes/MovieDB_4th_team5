@@ -6,7 +6,7 @@ import android.content.Context;
 import android.os.Bundle;
 
 import a501.itis.kpfu.ru.themoviedbapplication.AsyncRequestPopularFilms;
-import a501.itis.kpfu.ru.themoviedbapplication.Interface.TaskListenerInterface;
+import a501.itis.kpfu.ru.themoviedbapplication.interfaces.TaskListenerInterface;
 
 /**
  * Created by Марат on 13.01.2017.
