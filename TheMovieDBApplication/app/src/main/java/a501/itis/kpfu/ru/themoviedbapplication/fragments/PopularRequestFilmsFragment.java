@@ -1,12 +1,16 @@
-package a501.itis.kpfu.ru.themoviedbapplication;
+package a501.itis.kpfu.ru.themoviedbapplication.fragments;
 
 import android.app.Activity;
 import android.app.Fragment;
 import android.content.Context;
 import android.os.Bundle;
 
+import a501.itis.kpfu.ru.themoviedbapplication.AsyncRequestPopularFilms;
 import a501.itis.kpfu.ru.themoviedbapplication.interfaces.TaskListenerInterface;
 
+/**
+ * Created by Марат on 13.01.2017.
+ */
 
 public class PopularRequestFilmsFragment extends Fragment {
     TaskListenerInterface mTaskListener;

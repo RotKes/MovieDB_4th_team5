@@ -1,4 +1,4 @@
-package a501.itis.kpfu.ru.themoviedbapplication.Activity;
+package a501.itis.kpfu.ru.themoviedbapplication.activity;
 
 import android.os.Bundle;
 import android.support.annotation.IdRes;
@@ -9,7 +9,7 @@ import com.roughike.bottombar.OnTabSelectListener;
 
 import java.util.List;
 
-import a501.itis.kpfu.ru.themoviedbapplication.Interface.TaskListenerInterface;
+import a501.itis.kpfu.ru.themoviedbapplication.interfaces.TaskListenerInterface;
 import a501.itis.kpfu.ru.themoviedbapplication.R;
 
 public class MainActivity extends AppCompatActivity implements TaskListenerInterface {

@@ -1,4 +1,4 @@
-package a501.itis.kpfu.ru.themoviedbapplication.ApiObjects;
+package a501.itis.kpfu.ru.themoviedbapplication.apiObjects;
 
 
 

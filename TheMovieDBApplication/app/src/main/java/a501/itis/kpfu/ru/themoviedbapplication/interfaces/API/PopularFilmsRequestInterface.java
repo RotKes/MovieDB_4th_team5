@@ -1,6 +1,6 @@
-package a501.itis.kpfu.ru.themoviedbapplication.Interface.API;
+package a501.itis.kpfu.ru.themoviedbapplication.interfaces.API;
 
-import a501.itis.kpfu.ru.themoviedbapplication.ApiObjects.RequestPopularFilms;
+import a501.itis.kpfu.ru.themoviedbapplication.apiObjects.RequestPopularFilms;
 import retrofit2.Call;
 import retrofit2.http.GET;
 
