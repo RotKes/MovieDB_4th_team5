@@ -1,4 +1,4 @@
-package a501.itis.kpfu.ru.themoviedbapplication;
+package a501.itis.kpfu.ru.themoviedbapplication.Activity;
 
 import android.os.Bundle;
 import android.support.annotation.IdRes;
@@ -6,6 +6,8 @@ import android.support.v7.app.AppCompatActivity;
 
 import com.roughike.bottombar.BottomBar;
 import com.roughike.bottombar.OnTabSelectListener;
+
+import a501.itis.kpfu.ru.themoviedbapplication.R;
 
 public class MainActivity extends AppCompatActivity {
 
