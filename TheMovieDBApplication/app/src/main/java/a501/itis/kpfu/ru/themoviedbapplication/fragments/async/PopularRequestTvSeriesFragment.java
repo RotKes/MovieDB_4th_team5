@@ -1,11 +1,12 @@
-package a501.itis.kpfu.ru.themoviedbapplication;
+package a501.itis.kpfu.ru.themoviedbapplication.fragments.async;
 
 import android.app.Activity;
 import android.app.Fragment;
 import android.content.Context;
 import android.os.Bundle;
 
-import a501.itis.kpfu.ru.themoviedbapplication.Interface.TaskListenerInterface;
+import a501.itis.kpfu.ru.themoviedbapplication.async.AsyncRequestPopularTvSeries;
+import a501.itis.kpfu.ru.themoviedbapplication.interfaces.TaskListenerInterface;
 
 
 public class PopularRequestTvSeriesFragment extends Fragment {

@@ -1,17 +1,15 @@
-package a501.itis.kpfu.ru.themoviedbapplication;
+package a501.itis.kpfu.ru.themoviedbapplication.async;
 
 import android.os.AsyncTask;
 
 import java.io.IOException;
 import java.util.List;
 
-import a501.itis.kpfu.ru.themoviedbapplication.ApiObjects.RequestPopularFilmObject;
-import a501.itis.kpfu.ru.themoviedbapplication.ApiObjects.RequestPopularFilms;
-import a501.itis.kpfu.ru.themoviedbapplication.ApiObjects.RequestPopularTvSeries;
-import a501.itis.kpfu.ru.themoviedbapplication.ApiObjects.RequestPopularTvSeriesObject;
-import a501.itis.kpfu.ru.themoviedbapplication.Interface.API.PopularFilmsRequestInterface;
-import a501.itis.kpfu.ru.themoviedbapplication.Interface.API.PopularTvSeriesRequestInterface;
-import a501.itis.kpfu.ru.themoviedbapplication.Interface.TaskListenerInterface;
+import a501.itis.kpfu.ru.themoviedbapplication.apiObjects.RequestPopularTvSeries;
+import a501.itis.kpfu.ru.themoviedbapplication.apiObjects.RequestPopularTvSeriesObject;
+import a501.itis.kpfu.ru.themoviedbapplication.interfaces.API.PopularFilmsRequestInterface;
+import a501.itis.kpfu.ru.themoviedbapplication.interfaces.API.PopularTvSeriesRequestInterface;
+import a501.itis.kpfu.ru.themoviedbapplication.interfaces.TaskListenerInterface;
 import retrofit2.Call;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
