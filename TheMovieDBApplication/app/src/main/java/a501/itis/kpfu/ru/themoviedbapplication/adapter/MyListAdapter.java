@@ -14,7 +14,6 @@ import java.util.List;
 
 import a501.itis.kpfu.ru.themoviedbapplication.R;
 import a501.itis.kpfu.ru.themoviedbapplication.apiObjects.RequestPopularFilmObject;
-import a501.itis.kpfu.ru.themoviedbapplication.apiObjects.RequestPopularFilms;
 import a501.itis.kpfu.ru.themoviedbapplication.apiObjects.RequestPopularTvSeriesObject;
 
 /**
@@ -39,7 +38,7 @@ public class MyListAdapter extends RecyclerView.Adapter<MyListAdapter.MyListView
 
     @Override
     public MyListAdapter.MyListViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.main_page_item, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.main_item, parent, false);
         return new MyListViewHolder(view);
     }
 
