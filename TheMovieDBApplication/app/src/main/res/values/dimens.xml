@@ -3,4 +3,6 @@
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="size_for_strings">18sp</dimen>
+    <dimen name="image_width_item">200dp</dimen>
+    <dimen name="image_height_item">200dp</dimen>
 </resources>

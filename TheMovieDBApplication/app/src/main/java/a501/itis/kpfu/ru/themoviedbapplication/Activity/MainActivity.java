@@ -11,6 +11,7 @@ import com.roughike.bottombar.OnTabSelectListener;
 import java.util.List;
 
 import a501.itis.kpfu.ru.themoviedbapplication.R;
+import a501.itis.kpfu.ru.themoviedbapplication.fragments.MoviesListFragment;
 import a501.itis.kpfu.ru.themoviedbapplication.fragments.async.PopularRequestFilmsFragment;
 import a501.itis.kpfu.ru.themoviedbapplication.fragments.async.PopularRequestTvSeriesFragment;
 import a501.itis.kpfu.ru.themoviedbapplication.interfaces.TaskListenerInterface;
@@ -75,6 +76,11 @@ public class MainActivity extends AppCompatActivity implements TaskListenerInter
     public void onTaskFinish(List list, int id) {
         switch (id) {
             case 2:
+                MoviesListFragment fragment = new MoviesListFragment();
+                fragment.setList(list);
+                getFragmentManager().beginTransaction()
+                        .replace(R.id.moviesContainer, fragment, MoviesListFragment.class.getName())
+                        .commit();
                 break;
             case 1:
                 break;

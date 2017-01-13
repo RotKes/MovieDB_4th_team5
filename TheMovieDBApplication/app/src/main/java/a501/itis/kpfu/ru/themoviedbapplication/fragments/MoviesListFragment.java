@@ -9,8 +9,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import java.util.List;
+
 import a501.itis.kpfu.ru.themoviedbapplication.R;
 import a501.itis.kpfu.ru.themoviedbapplication.adapter.MyListAdapter;
+import a501.itis.kpfu.ru.themoviedbapplication.apiObjects.RequestPopularFilmObject;
 
 /**
  * Created by Амир on 13.01.2017.
@@ -18,13 +21,16 @@ import a501.itis.kpfu.ru.themoviedbapplication.adapter.MyListAdapter;
 
 public class MoviesListFragment extends Fragment {
     RecyclerView rv;
+    List<RequestPopularFilmObject> filmObjectList;
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        filmObjectList = (List<RequestPopularFilmObject>) getArguments().getSerializable("movies_list");
         View view = inflater.inflate(R.layout.main_page_movies_list, container, false);
         rv = (RecyclerView) view.findViewById(R.id.movies_list);
         rv.setLayoutManager(new LinearLayoutManager(rv.getContext(), LinearLayoutManager.HORIZONTAL, false));
-        MyListAdapter adapter = new MyListAdapter(getActivity());
+        MyListAdapter adapter = new MyListAdapter(filmObjectList, getActivity());
         rv.setAdapter(adapter);
         return view;
     }
@@ -32,5 +38,9 @@ public class MoviesListFragment extends Fragment {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+    }
+
+    public void setList(List list) {
+        filmObjectList = list;
     }
 }

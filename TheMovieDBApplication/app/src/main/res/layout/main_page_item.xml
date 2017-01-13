@@ -6,13 +6,13 @@
 
     <ImageView
         android:id="@+id/item_image"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="@dimen/image_width_item"
+        android:layout_height="@dimen/image_height_item"
         android:layout_weight="1"/>
 
     <TextView
         android:id="@+id/item_title"
-        android:layout_width="match_parent"
+        android:layout_width="@dimen/image_width_item"
         android:layout_height="match_parent"
         android:layout_weight="4"/>
 

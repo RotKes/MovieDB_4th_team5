@@ -14,17 +14,17 @@ import java.util.List;
 
 import a501.itis.kpfu.ru.themoviedbapplication.R;
 import a501.itis.kpfu.ru.themoviedbapplication.apiObjects.RequestPopularFilmObject;
-import a501.itis.kpfu.ru.themoviedbapplication.apiObjects.RequestPopularFilms;
 
 /**
  * Created by Амир on 13.01.2017.
  */
 
 public class MyListAdapter extends RecyclerView.Adapter<MyListAdapter.MyListViewHolder> {
-    List<RequestPopularFilmObject> filmObjectList = new RequestPopularFilms().getResults();
+    List<RequestPopularFilmObject> filmObjectList;
     Context mContext;
 
-    public MyListAdapter(Context context) {
+    public MyListAdapter(List<RequestPopularFilmObject> filmObjectList, Context context) {
+        this.filmObjectList = filmObjectList;
         this.mContext = context;
     }
 
