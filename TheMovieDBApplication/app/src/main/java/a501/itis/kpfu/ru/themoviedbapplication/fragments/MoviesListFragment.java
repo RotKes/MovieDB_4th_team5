@@ -14,17 +14,20 @@ import java.util.List;
 import a501.itis.kpfu.ru.themoviedbapplication.R;
 import a501.itis.kpfu.ru.themoviedbapplication.adapter.MyListAdapter;
 
+/**
+ * Created by Амир on 13.01.2017.
+ */
 
-public class TvSerialsListFragment extends Fragment {
+public class MoviesListFragment extends Fragment {
     RecyclerView rv;
     List list;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.tv_series_fragment, container, false);
-        rv = (RecyclerView) view.findViewById(R.id.tv_series_recycler);
+        View view = inflater.inflate(R.layout.main_page_movies_list, container, false);
+        rv = (RecyclerView) view.findViewById(R.id.movies_list);
         rv.setLayoutManager(new LinearLayoutManager(rv.getContext(), LinearLayoutManager.HORIZONTAL, false));
-        MyListAdapter adapter = new MyListAdapter(getActivity(), list, 2);
+        MyListAdapter adapter = new MyListAdapter(getActivity(), list ,1 );
         rv.setAdapter(adapter);
         return view;
     }
@@ -38,6 +41,5 @@ public class TvSerialsListFragment extends Fragment {
     public void setList( List list) {
         this.list = list;
     }
-
 
 }

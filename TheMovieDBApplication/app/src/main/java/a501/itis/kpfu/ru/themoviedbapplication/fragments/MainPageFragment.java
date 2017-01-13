@@ -15,11 +15,11 @@ import a501.itis.kpfu.ru.themoviedbapplication.R;
  */
 
 public class MainPageFragment extends Fragment {
-    RecyclerView mRecyclerView;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.main_page_fragment, container, false);
-        mRecyclerView  = (RecyclerView) view.findViewById(R.id.tv_series_recycler);
+
         return view;
     }
 

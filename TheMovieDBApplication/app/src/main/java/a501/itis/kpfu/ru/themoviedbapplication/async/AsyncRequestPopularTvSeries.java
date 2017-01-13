@@ -46,7 +46,7 @@ public class AsyncRequestPopularTvSeries extends AsyncTask<Void, Void, Void> {
 
     protected void onPostExecute(Void integer) {
         super.onPostExecute(integer);
-        mTaskListener.onTaskFinish(listOfSeries, 3);
+        mTaskListener.onTaskFinish(listOfSeries, 1);
 
     }
 
