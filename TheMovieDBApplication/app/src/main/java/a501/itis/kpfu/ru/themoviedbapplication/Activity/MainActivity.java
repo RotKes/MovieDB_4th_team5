@@ -7,9 +7,12 @@ import android.support.v7.app.AppCompatActivity;
 import com.roughike.bottombar.BottomBar;
 import com.roughike.bottombar.OnTabSelectListener;
 
+import java.util.List;
+
+import a501.itis.kpfu.ru.themoviedbapplication.Interface.TaskListenerInterface;
 import a501.itis.kpfu.ru.themoviedbapplication.R;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements TaskListenerInterface {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,5 +35,22 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         bottomBar.setDefaultTab(R.id.tab_main);
+    }
+
+    @Override
+    public void onTaskFinish(List list, int id) {
+        switch (id) {
+            case 2:
+                break;
+            case 1:
+                break;
+            case 3:
+                break;
+        }
+    }
+
+    @Override
+    public void onTaskStarted() {
+
     }
 }
