@@ -20,7 +20,7 @@ public class PopularRequestFilmsFragment extends Fragment {
     public void onAttach(Context context) {
         super.onAttach(context);
         mTaskListener = (TaskListenerInterface) context;
-        if(async!=null) {
+        if(async != null) {
             async.newListener(mTaskListener);
         }
     }

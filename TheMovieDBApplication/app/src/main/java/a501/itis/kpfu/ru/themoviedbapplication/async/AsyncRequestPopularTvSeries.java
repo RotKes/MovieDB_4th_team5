@@ -7,7 +7,6 @@ import java.util.List;
 
 import a501.itis.kpfu.ru.themoviedbapplication.apiObjects.RequestPopularTvSeries;
 import a501.itis.kpfu.ru.themoviedbapplication.apiObjects.RequestPopularTvSeriesObject;
-import a501.itis.kpfu.ru.themoviedbapplication.interfaces.API.PopularFilmsRequestInterface;
 import a501.itis.kpfu.ru.themoviedbapplication.interfaces.API.PopularTvSeriesRequestInterface;
 import a501.itis.kpfu.ru.themoviedbapplication.interfaces.TaskListenerInterface;
 import retrofit2.Call;
