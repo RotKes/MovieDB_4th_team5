@@ -14,6 +14,7 @@ import java.util.List;
 
 import a501.itis.kpfu.ru.themoviedbapplication.R;
 import a501.itis.kpfu.ru.themoviedbapplication.apiObjects.RequestPopularFilmObject;
+import a501.itis.kpfu.ru.themoviedbapplication.apiObjects.RequestPopularTvSeriesObject;
 
 /**
  * Created by Амир on 13.01.2017.
@@ -22,30 +23,49 @@ import a501.itis.kpfu.ru.themoviedbapplication.apiObjects.RequestPopularFilmObje
 public class MyListAdapter extends RecyclerView.Adapter<MyListAdapter.MyListViewHolder> {
     List<RequestPopularFilmObject> filmObjectList;
     Context mContext;
-
-    public MyListAdapter(List<RequestPopularFilmObject> filmObjectList, Context context) {
-        this.filmObjectList = filmObjectList;
+    int id;
+    List<RequestPopularTvSeriesObject> tvSeriesObjectsList;
+    public MyListAdapter(Context context, List list, int id) {
         this.mContext = context;
+        this.id = id;
+        if(id == 1) {
+            filmObjectList = list;
+        } else {
+            tvSeriesObjectsList = list;
+        }
     }
 
     @Override
     public MyListAdapter.MyListViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.main_page_item, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.main_item, parent, false);
         return new MyListViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(MyListAdapter.MyListViewHolder holder, int position) {
-        final RequestPopularFilmObject film = filmObjectList.get(position);
-        Picasso.with(mContext)
-                .load("https://image.tmdb.org/t/p/w500" + film.getPosterPath())
-                .into(holder.imageView);
-        holder.textView.setText(film.getTitle());
+        if(id == 1) {
+            final RequestPopularFilmObject film = filmObjectList.get(position);
+            Picasso.with(mContext)
+                    .load("https://image.tmdb.org/t/p/w500" + film.getPosterPath())
+                    .into(holder.imageView);
+            holder.textView.setText(film.getTitle());
+        } else {
+            final RequestPopularTvSeriesObject seriesObject = tvSeriesObjectsList.get(position);
+            Picasso.with(mContext)
+                    .load("https://image.tmdb.org/t/p/w500" + seriesObject.getPosterPath())
+                    .into(holder.imageView);
+            holder.textView.setText(seriesObject.getName());
+        }
+
     }
 
     @Override
     public int getItemCount() {
-        return filmObjectList.size();
+        if(id == 1) {
+            return filmObjectList.size();
+        } else {
+            return tvSeriesObjectsList.size();
+        }
     }
 
     public class MyListViewHolder extends RecyclerView.ViewHolder {

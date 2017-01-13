@@ -12,6 +12,7 @@ import java.util.List;
 
 import a501.itis.kpfu.ru.themoviedbapplication.R;
 import a501.itis.kpfu.ru.themoviedbapplication.fragments.MoviesListFragment;
+import a501.itis.kpfu.ru.themoviedbapplication.fragments.TvSerialsListFragment;
 import a501.itis.kpfu.ru.themoviedbapplication.fragments.async.PopularRequestFilmsFragment;
 import a501.itis.kpfu.ru.themoviedbapplication.fragments.async.PopularRequestTvSeriesFragment;
 import a501.itis.kpfu.ru.themoviedbapplication.interfaces.TaskListenerInterface;
@@ -20,12 +21,17 @@ public class MainActivity extends AppCompatActivity implements TaskListenerInter
 
     private final String MOVIES_REQUEST_FRAGMENT = "movies_request_fragment";
     private final String TV_SERIES_REQUEST_FRAGMENT = "tv_series_request_fragment";
+    private final String MOVIES_LIST_FRAGMENT = "movies_list_fragment";
+    private final String TV_SERIES_FRAGMENT = "tv_series_fragment";
     PopularRequestFilmsFragment filmsFragment;
+    PopularRequestTvSeriesFragment seriesFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
 
         BottomBar bottomBar = (BottomBar) findViewById(R.id.bottomBar);
         bottomBar.setOnTabSelectListener(new OnTabSelectListener() {
@@ -37,6 +43,9 @@ public class MainActivity extends AppCompatActivity implements TaskListenerInter
                 if (tabId == R.id.tab_main) {
                     filmsFragment = (PopularRequestFilmsFragment) getAsyncFragmentByTag(MOVIES_REQUEST_FRAGMENT);
                     filmsFragment.startAsync();
+                    seriesFragment = (PopularRequestTvSeriesFragment) getAsyncFragmentByTag(TV_SERIES_REQUEST_FRAGMENT);
+                    seriesFragment.startAsync();
+
                 }
                 if (tabId == R.id.tab_series) {
 
@@ -76,13 +85,18 @@ public class MainActivity extends AppCompatActivity implements TaskListenerInter
     public void onTaskFinish(List list, int id) {
         switch (id) {
             case 2:
-                MoviesListFragment fragment = new MoviesListFragment();
-                fragment.setList(list);
+                MoviesListFragment moviesFragment = new MoviesListFragment();
+                moviesFragment.setList(list);
                 getFragmentManager().beginTransaction()
-                        .replace(R.id.moviesContainer, fragment, MoviesListFragment.class.getName())
+                        .replace(R.id.moviesContainer, moviesFragment, MOVIES_LIST_FRAGMENT)
                         .commit();
                 break;
             case 1:
+                TvSerialsListFragment serialFragment = new TvSerialsListFragment();
+                serialFragment.setList(list);
+                getFragmentManager().beginTransaction()
+                        .replace(R.id.tvSeriesContainer, serialFragment, TV_SERIES_FRAGMENT)
+                        .commit();
                 break;
             case 3:
                 break;
