@@ -8,12 +8,15 @@ import android.view.ViewGroup;
 
 import a501.itis.kpfu.ru.themoviedbapplication.R;
 
-/**
- * Created by Марат on 13.01.2017.
- */
+
 
 public class TvSerialsListFragment extends Fragment {
-
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.tv_series_fragment,  container, false);
+        return view;
+    }
 
 
 }
