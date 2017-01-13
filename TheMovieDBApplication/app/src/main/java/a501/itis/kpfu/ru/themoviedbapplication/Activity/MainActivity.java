@@ -1,5 +1,6 @@
 package a501.itis.kpfu.ru.themoviedbapplication.activity;
 
+import android.app.Fragment;
 import android.os.Bundle;
 import android.support.annotation.IdRes;
 import android.support.v7.app.AppCompatActivity;
@@ -11,6 +12,7 @@ import java.util.List;
 
 import a501.itis.kpfu.ru.themoviedbapplication.R;
 import a501.itis.kpfu.ru.themoviedbapplication.fragments.async.PopularRequestFilmsFragment;
+import a501.itis.kpfu.ru.themoviedbapplication.fragments.async.PopularRequestTvSeriesFragment;
 import a501.itis.kpfu.ru.themoviedbapplication.interfaces.TaskListenerInterface;
 
 public class MainActivity extends AppCompatActivity implements TaskListenerInterface {
@@ -32,7 +34,7 @@ public class MainActivity extends AppCompatActivity implements TaskListenerInter
 
                 }
                 if (tabId == R.id.tab_main) {
-                    filmsFragment = getAsyncFragmentByTag(MOVIES_REQUEST_FRAGMENT);
+                    filmsFragment = (PopularRequestFilmsFragment) getAsyncFragmentByTag(MOVIES_REQUEST_FRAGMENT);
                     filmsFragment.startAsync();
                 }
                 if (tabId == R.id.tab_series) {
@@ -43,7 +45,7 @@ public class MainActivity extends AppCompatActivity implements TaskListenerInter
         bottomBar.setDefaultTab(R.id.tab_main);
     }
 
-    public PopularRequestFilmsFragment getAsyncFragmentByTag(String tag) {
+    public Fragment getAsyncFragmentByTag(String tag) {
         if (tag.equals(MOVIES_REQUEST_FRAGMENT)) {
             PopularRequestFilmsFragment popularRequestFilmsFragment = (PopularRequestFilmsFragment) getFragmentManager().findFragmentByTag(tag);
             if (popularRequestFilmsFragment == null) {
@@ -56,7 +58,15 @@ public class MainActivity extends AppCompatActivity implements TaskListenerInter
             return popularRequestFilmsFragment;
         }
         else if (tag.equals(TV_SERIES_REQUEST_FRAGMENT)) {
-
+            PopularRequestTvSeriesFragment popularRequestTvSeriesFragment = (PopularRequestTvSeriesFragment) getFragmentManager().findFragmentByTag(tag);
+            if (popularRequestTvSeriesFragment == null) {
+                popularRequestTvSeriesFragment = new PopularRequestTvSeriesFragment();
+                getFragmentManager()
+                        .beginTransaction()
+                        .add(popularRequestTvSeriesFragment, tag)
+                        .commit();
+            }
+            return popularRequestTvSeriesFragment;
         }
         return null;
     }
