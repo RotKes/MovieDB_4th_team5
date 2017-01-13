@@ -23,19 +23,14 @@ public class MainActivity extends AppCompatActivity {
                 if (tabId == R.id.tab_movies) {
 
                 }
-                if (tabId == R.id.tab_movies_second) {
-
-                }
                 if (tabId == R.id.tab_main) {
 
                 }
                 if (tabId == R.id.tab_series) {
 
                 }
-                if (tabId == R.id.tab_series_second) {
-
-                }
             }
         });
+        bottomBar.setDefaultTab(R.id.tab_main);
     }
 }

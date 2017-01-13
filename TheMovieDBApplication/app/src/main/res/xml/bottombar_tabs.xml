@@ -2,17 +2,14 @@
 <tabs>
     <tab
         id="@+id/tab_movies"
+        icon="@drawable/ic_live_tv_black_24dp"
         title="Movies" />
     <tab
-        id="@+id/tab_movies_second"
-        title="//TODO" />
-    <tab
         id="@+id/tab_main"
+        icon="@drawable/ic_star_black_24dp"
         title="Main" />
     <tab
         id="@+id/tab_series"
+        icon="@drawable/ic_computer_black_24dp"
         title="TV Series" />
-    <tab
-        id="@+id/tab_series_second"
-        title="//TODO" />
 </tabs>
