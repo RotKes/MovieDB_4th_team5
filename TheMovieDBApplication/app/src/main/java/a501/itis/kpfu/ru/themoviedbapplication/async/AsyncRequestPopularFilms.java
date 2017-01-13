@@ -1,4 +1,4 @@
-package a501.itis.kpfu.ru.themoviedbapplication;
+package a501.itis.kpfu.ru.themoviedbapplication.async;
 
 import android.os.AsyncTask;
 

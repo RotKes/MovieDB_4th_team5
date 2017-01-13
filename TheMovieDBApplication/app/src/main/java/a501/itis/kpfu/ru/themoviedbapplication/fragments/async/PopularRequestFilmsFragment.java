@@ -1,11 +1,11 @@
-package a501.itis.kpfu.ru.themoviedbapplication.fragments;
+package a501.itis.kpfu.ru.themoviedbapplication.fragments.async;
 
 import android.app.Activity;
 import android.app.Fragment;
 import android.content.Context;
 import android.os.Bundle;
 
-import a501.itis.kpfu.ru.themoviedbapplication.AsyncRequestPopularFilms;
+import a501.itis.kpfu.ru.themoviedbapplication.async.AsyncRequestPopularFilms;
 import a501.itis.kpfu.ru.themoviedbapplication.interfaces.TaskListenerInterface;
 
 /**
@@ -20,7 +20,7 @@ public class PopularRequestFilmsFragment extends Fragment {
     public void onAttach(Context context) {
         super.onAttach(context);
         mTaskListener = (TaskListenerInterface) context;
-        if(async!=null) {
+        if(async != null) {
             async.newListener(mTaskListener);
         }
     }

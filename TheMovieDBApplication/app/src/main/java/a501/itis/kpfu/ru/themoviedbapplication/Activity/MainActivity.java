@@ -9,10 +9,15 @@ import com.roughike.bottombar.OnTabSelectListener;
 
 import java.util.List;
 
-import a501.itis.kpfu.ru.themoviedbapplication.interfaces.TaskListenerInterface;
 import a501.itis.kpfu.ru.themoviedbapplication.R;
+import a501.itis.kpfu.ru.themoviedbapplication.fragments.async.PopularRequestFilmsFragment;
+import a501.itis.kpfu.ru.themoviedbapplication.interfaces.TaskListenerInterface;
 
 public class MainActivity extends AppCompatActivity implements TaskListenerInterface {
+
+    private final String MOVIES_REQUEST_FRAGMENT = "movies_request_fragment";
+    private final String TV_SERIES_REQUEST_FRAGMENT = "tv_series_request_fragment";
+    PopularRequestFilmsFragment filmsFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,7 +32,8 @@ public class MainActivity extends AppCompatActivity implements TaskListenerInter
 
                 }
                 if (tabId == R.id.tab_main) {
-
+                    filmsFragment = getAsyncFragmentByTag(MOVIES_REQUEST_FRAGMENT);
+                    filmsFragment.startAsync();
                 }
                 if (tabId == R.id.tab_series) {
 
@@ -35,6 +41,24 @@ public class MainActivity extends AppCompatActivity implements TaskListenerInter
             }
         });
         bottomBar.setDefaultTab(R.id.tab_main);
+    }
+
+    public PopularRequestFilmsFragment getAsyncFragmentByTag(String tag) {
+        if (tag.equals(MOVIES_REQUEST_FRAGMENT)) {
+            PopularRequestFilmsFragment popularRequestFilmsFragment = (PopularRequestFilmsFragment) getFragmentManager().findFragmentByTag(tag);
+            if (popularRequestFilmsFragment == null) {
+                popularRequestFilmsFragment = new PopularRequestFilmsFragment();
+                getFragmentManager()
+                        .beginTransaction()
+                        .add(popularRequestFilmsFragment, tag)
+                        .commit();
+            }
+            return popularRequestFilmsFragment;
+        }
+        else if (tag.equals(TV_SERIES_REQUEST_FRAGMENT)) {
+
+        }
+        return null;
     }
 
     @Override
