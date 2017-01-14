@@ -17,15 +17,5 @@
         android:layout_alignParentBottom="true"
         app:bb_tabXmlResource="@xml/bottombar_tabs" />
 
-    <!--<FrameLayout
-            android:id="@+id/moviesContainer"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"/>
 
-        <FrameLayout
-            android:id="@+id/tvSeriesContainer"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"/>-->
 </RelativeLayout>

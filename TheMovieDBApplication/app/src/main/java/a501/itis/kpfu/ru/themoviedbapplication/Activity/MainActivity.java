@@ -4,7 +4,6 @@ import android.app.Fragment;
 import android.os.Bundle;
 import android.support.annotation.IdRes;
 import android.support.v7.app.AppCompatActivity;
-import android.widget.Toast;
 
 import com.roughike.bottombar.BottomBar;
 import com.roughike.bottombar.OnTabSelectListener;
@@ -34,7 +33,12 @@ public class MainActivity extends AppCompatActivity implements TaskListenerInter
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         mainFragment = new MainPageFragment();
+
         getFragmentManager().beginTransaction().replace(R.id.contentContainer, mainFragment, MainPageFragment.class.getName()).commit();
+
+        getFragmentManager().beginTransaction()
+                .replace(R.id.contentContainer, mainFragment, MainPageFragment.class.getName())
+                .commit();
 
         BottomBar bottomBar = (BottomBar) findViewById(R.id.bottomBar);
         bottomBar.setOnTabSelectListener(new OnTabSelectListener() {
@@ -88,14 +92,20 @@ public class MainActivity extends AppCompatActivity implements TaskListenerInter
     public void onTaskFinish(List list, int id) {
         switch (id) {
             case 2:
-                MoviesListFragment fragment = new MoviesListFragment();
-                fragment.setList(list);
-                getFragmentManager().beginTransaction().replace(R.id.moviesContainer, fragment , MOVIES_LIST_FRAGMENT).commit();
+
+                MoviesListFragment moviesFragment = new MoviesListFragment();
+                moviesFragment.setList(list);
+                getFragmentManager().beginTransaction()
+                        .replace(R.id.moviesContainer, moviesFragment, MOVIES_LIST_FRAGMENT)
+                        .commit();
+
                 break;
             case 1:
                 TvSerialsListFragment serialFragment = new TvSerialsListFragment();
                 serialFragment.setList(list);
-                getFragmentManager().beginTransaction().replace(R.id.tvSeriesContainer, serialFragment, TV_SERIES_FRAGMENT).commit();
+                getFragmentManager().beginTransaction()
+                        .replace(R.id.tvSeriesContainer, serialFragment, TV_SERIES_FRAGMENT)
+                        .commit();
                 break;
             case 3:
                 break;

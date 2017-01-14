@@ -25,11 +25,10 @@ public class MyListAdapter extends RecyclerView.Adapter<MyListAdapter.MyListView
     Context mContext;
     int id;
     List<RequestPopularTvSeriesObject> tvSeriesObjectsList;
-
     public MyListAdapter(Context context, List list, int id) {
         this.mContext = context;
         this.id = id;
-        if(id==1) {
+        if(id == 1) {
             filmObjectList = list;
         } else {
             tvSeriesObjectsList = list;
