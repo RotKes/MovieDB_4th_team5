@@ -38,6 +38,4 @@ public class TvSerialsListFragment extends Fragment {
     public void setList( List list) {
         this.list = list;
     }
-
-
 }

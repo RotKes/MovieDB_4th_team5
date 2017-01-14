@@ -6,11 +6,8 @@ import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
 
-import a501.itis.kpfu.ru.themoviedbapplication.apiObjects.RequestPopularFilmObject;
-import a501.itis.kpfu.ru.themoviedbapplication.apiObjects.RequestPopularFilms;
 import a501.itis.kpfu.ru.themoviedbapplication.apiObjects.fillmsObjects.FilmObject;
 import a501.itis.kpfu.ru.themoviedbapplication.interfaces.API.FilmRequestInterface;
-import a501.itis.kpfu.ru.themoviedbapplication.interfaces.API.PopularFilmsRequestInterface;
 import a501.itis.kpfu.ru.themoviedbapplication.interfaces.TaskListenerInterface;
 import retrofit2.Call;
 import retrofit2.Retrofit;
@@ -51,7 +48,7 @@ public class AsyncRequestFilm extends AsyncTask<Void, Void, Void> {
 
     protected void onPostExecute(Void integer) {
         super.onPostExecute(integer);
-        mTaskListener.onTaskFinish(listOfFilms, 2);
+        mTaskListener.onTaskFinish(listOfFilms, 0);
 
     }
 

@@ -5,14 +5,16 @@ import android.app.Fragment;
 import android.content.Context;
 import android.os.Bundle;
 
-import a501.itis.kpfu.ru.themoviedbapplication.async.AsyncRequestFilm;
+import a501.itis.kpfu.ru.themoviedbapplication.async.AsyncSearchFilm;
 import a501.itis.kpfu.ru.themoviedbapplication.interfaces.TaskListenerInterface;
 
+/**
+ * Created by Амир on 14.01.2017.
+ */
 
-
-public class FilmRequestFragment extends Fragment {
+public class SearchMovieFragment extends Fragment {
     TaskListenerInterface mTaskListener;
-    AsyncRequestFilm async;
+    AsyncSearchFilm async;
 
 
     @Override
@@ -43,13 +45,13 @@ public class FilmRequestFragment extends Fragment {
     }
 
     public void startAsync() {
-        async = new AsyncRequestFilm(mTaskListener);
+        async = new AsyncSearchFilm(mTaskListener);
         async.execute();
     }
 
-    public void sendRequest(int id) {
-        async = new AsyncRequestFilm(mTaskListener);
-        async.setFilmId(id);
+    public void sendRequest(String title) {
+        async = new AsyncSearchFilm(mTaskListener);
+        async.setMovieTitleRequest(title);
         async.execute();
     }
 }
