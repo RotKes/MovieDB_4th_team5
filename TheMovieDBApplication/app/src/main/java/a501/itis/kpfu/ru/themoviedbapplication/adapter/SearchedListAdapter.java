@@ -47,7 +47,7 @@ public class SearchedListAdapter extends RecyclerView.Adapter<SearchedListAdapte
 
     @Override
     public int getItemCount() {
-        return listOfMovies.size();
+        return listOfMovies == null ? 0 : listOfMovies.size();
     }
 
     public class SearchedListViewHolder extends RecyclerView.ViewHolder {
