@@ -5,13 +5,11 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.inputmethod.EditorInfo;
+import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 
 import java.util.List;
 
@@ -23,9 +21,12 @@ import a501.itis.kpfu.ru.themoviedbapplication.adapter.SearchedListAdapter;
  */
 
 public class MovieSearchFragment extends Fragment {
+    public final String SEARCH_MOVIE_REQUEST_FRAGMENT = "search_movie_request_fragment";
     RecyclerView rv;
     List list;
     EditText searchBox;
+    Button submit;
+    String title;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -41,15 +42,11 @@ public class MovieSearchFragment extends Fragment {
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         searchBox = (EditText) view.findViewById(R.id.edit_search_bar);
-        searchBox.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+        submit = (Button) view.findViewById(R.id.button_search_bar);
+        submit.setOnClickListener(new View.OnClickListener() {
             @Override
-            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-                boolean handled = false;
-                if (actionId == EditorInfo.IME_ACTION_SEND) {
-                    searchBox.getText();
-                    handled = true;
-                }
-                return handled;
+            public void onClick(View view) {
+                title = searchBox.getText().toString();
             }
         });
     }
@@ -57,4 +54,15 @@ public class MovieSearchFragment extends Fragment {
     public void setList(List list) {
         this.list = list;
     }
+
+    public String getTitle() {
+        return title;
+    }
+
+    /*public static void recreatingFragment(){
+        movieSearchFragment.setList(list);
+        getFragmentManager().beginTransaction()
+                .replace(R.id.contentContainer, movieSearchFragment, MovieSearchFragment.class.getName())
+                .commit();
+    }*/
 }
