@@ -3,6 +3,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <!-- This could be your fragment container, or something -->
     <FrameLayout
         android:id="@+id/contentContainer"
         android:layout_width="match_parent"
@@ -15,5 +16,4 @@
         android:layout_height="60dp"
         android:layout_alignParentBottom="true"
         app:bb_tabXmlResource="@xml/bottombar_tabs" />
-
 </RelativeLayout>

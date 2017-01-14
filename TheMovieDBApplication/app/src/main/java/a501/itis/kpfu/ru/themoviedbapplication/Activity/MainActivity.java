@@ -33,6 +33,7 @@ public class MainActivity extends AppCompatActivity implements TaskListenerInter
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         mainFragment = new MainPageFragment();
+
         getFragmentManager().beginTransaction()
                 .replace(R.id.contentContainer, mainFragment, MainPageFragment.class.getName())
                 .commit();
