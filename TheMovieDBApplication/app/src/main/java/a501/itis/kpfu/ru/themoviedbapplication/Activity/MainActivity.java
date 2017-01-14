@@ -50,7 +50,7 @@ public class MainActivity extends AppCompatActivity implements TaskListenerInter
                             .commit();
                     searchMovieFragment = (SearchMovieFragment) getAsyncFragmentByTag(SEARCH_MOVIE_REQUEST_FRAGMENT);
                     workingFragment = 3;
-                    searchMovieFragment.sendRequest(movieSearchFragment.getTitle());
+                    searchMovieFragment.sendRequest(" ");
                 }
                 if (tabId == R.id.tab_main) {
                     mainFragment = new MainPageFragment();
