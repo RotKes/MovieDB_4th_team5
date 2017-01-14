@@ -1,18 +1,21 @@
 package a501.itis.kpfu.ru.themoviedbapplication.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
 import a501.itis.kpfu.ru.themoviedbapplication.R;
+import a501.itis.kpfu.ru.themoviedbapplication.activity.FilmInfoActivity;
 import a501.itis.kpfu.ru.themoviedbapplication.apiObjects.RequestPopularFilmObject;
 import a501.itis.kpfu.ru.themoviedbapplication.apiObjects.RequestPopularTvSeriesObject;
 
@@ -42,13 +45,21 @@ public class MyListAdapter extends RecyclerView.Adapter<MyListAdapter.MyListView
     }
 
     @Override
-    public void onBindViewHolder(MyListAdapter.MyListViewHolder holder, int position) {
+    public void onBindViewHolder(MyListAdapter.MyListViewHolder holder, final int position) {
         if(id == 1) {
             final RequestPopularFilmObject film = filmObjectList.get(position);
             Picasso.with(mContext)
                     .load("https://image.tmdb.org/t/p/w500" + film.getPosterPath())
                     .into(holder.imageView);
             holder.textView.setText(film.getTitle());
+            holder.imageView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(mContext, FilmInfoActivity.class);
+                    intent.putExtra("filmId", filmObjectList.get(position).getId());
+                    mContext.startActivity(intent);
+                }
+            });
         } else {
             final RequestPopularTvSeriesObject seriesObject = tvSeriesObjectsList.get(position);
             Picasso.with(mContext)
@@ -56,6 +67,7 @@ public class MyListAdapter extends RecyclerView.Adapter<MyListAdapter.MyListView
                     .into(holder.imageView);
             holder.textView.setText(seriesObject.getName());
         }
+
 
     }
 

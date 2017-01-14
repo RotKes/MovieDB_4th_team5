@@ -14,9 +14,7 @@ import retrofit2.Call;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-/**
- * Created by Амир on 14.01.2017.
- */
+
 
 public class AsyncSearchFilm extends AsyncTask<Void, Void, Void> {
 

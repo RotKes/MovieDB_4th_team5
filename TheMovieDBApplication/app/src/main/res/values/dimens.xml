@@ -10,4 +10,5 @@
     <dimen name="line_height">190dp</dimen>
     <dimen name="line_width">1dp</dimen>
     <dimen name="line_margin">10dp</dimen>
+    <dimen name="text_size_film_info">20dp</dimen>
 </resources>

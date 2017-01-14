@@ -98,7 +98,6 @@ public class MainActivity extends AppCompatActivity implements TaskListenerInter
                 getFragmentManager().beginTransaction()
                         .replace(R.id.moviesContainer, moviesFragment, MOVIES_LIST_FRAGMENT)
                         .commit();
-
                 break;
             case 1:
                 TvSerialsListFragment serialFragment = new TvSerialsListFragment();

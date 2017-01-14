@@ -20,7 +20,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class AsyncRequestFilm extends AsyncTask<Void, Void, Void> {
     TaskListenerInterface mTaskListener;
     int id;
-    List listOfFilms;
+    List<FilmObject> listOfFilms;
 
     public AsyncRequestFilm (TaskListenerInterface taskListener) {
         mTaskListener = taskListener;
@@ -40,7 +40,11 @@ public class AsyncRequestFilm extends AsyncTask<Void, Void, Void> {
         FilmRequestInterface server = retrofit.create(FilmRequestInterface.class);
         Call<FilmObject> film = server.getFilm(id);
         listOfFilms = new LinkedList();
-        listOfFilms.add(film);
+        try {
+            listOfFilms.add(0, film.execute().body());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
         return null;
     }
