@@ -12,6 +12,7 @@ import com.roughike.bottombar.OnTabSelectListener;
 import java.util.List;
 
 import a501.itis.kpfu.ru.themoviedbapplication.R;
+import a501.itis.kpfu.ru.themoviedbapplication.fragments.MainPageFragment;
 import a501.itis.kpfu.ru.themoviedbapplication.fragments.MoviesListFragment;
 import a501.itis.kpfu.ru.themoviedbapplication.fragments.TvSerialsListFragment;
 import a501.itis.kpfu.ru.themoviedbapplication.fragments.async.PopularRequestFilmsFragment;
@@ -26,12 +27,14 @@ public class MainActivity extends AppCompatActivity implements TaskListenerInter
     private final String TV_SERIES_FRAGMENT = "tv_series_fragment";
     PopularRequestFilmsFragment filmsFragment;
     PopularRequestTvSeriesFragment seriesFragment;
+    MainPageFragment mainFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        
+        mainFragment = new MainPageFragment();
+        getFragmentManager().beginTransaction().replace(R.id.contentContainer, mainFragment, MainPageFragment.class.getName()).commit();
 
         BottomBar bottomBar = (BottomBar) findViewById(R.id.bottomBar);
         bottomBar.setOnTabSelectListener(new OnTabSelectListener() {
@@ -87,7 +90,7 @@ public class MainActivity extends AppCompatActivity implements TaskListenerInter
             case 2:
                 MoviesListFragment fragment = new MoviesListFragment();
                 fragment.setList(list);
-                getFragmentManager().beginTransaction().replace(R.id.moviesContainer,fragment , MOVIES_LIST_FRAGMENT).commit();
+                getFragmentManager().beginTransaction().replace(R.id.moviesContainer, fragment , MOVIES_LIST_FRAGMENT).commit();
                 break;
             case 1:
                 TvSerialsListFragment serialFragment = new TvSerialsListFragment();
