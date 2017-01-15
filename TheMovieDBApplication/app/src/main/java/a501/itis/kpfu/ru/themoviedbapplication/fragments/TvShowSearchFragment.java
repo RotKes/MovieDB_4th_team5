@@ -75,23 +75,13 @@ public class TvShowSearchFragment extends Fragment {
     }
 
     public void updateFragment(String title) {
-        SearchTvShowFragment searchTvShowFragment;
-        TvShowSearchFragment tvShowSearchFragment = new TvShowSearchFragment();
-        getFragmentManager().beginTransaction()
-                .replace(R.id.contentContainer, tvShowSearchFragment, TvShowSearchFragment.class.getName())
-                .commit();
-        searchTvShowFragment = (SearchTvShowFragment) getAsyncFragmentByTag(SEARCH_TV_SHOW_REQUEST_FRAGMENT);
-        searchTvShowFragment.sendRequest(title);
-    }
-
-    public Fragment getAsyncFragmentByTag(String tag) {
-        SearchTvShowFragment searchTvShowFragment = (SearchTvShowFragment) getFragmentManager().findFragmentByTag(tag);
+        SearchTvShowFragment searchTvShowFragment = (SearchTvShowFragment) getFragmentManager().findFragmentByTag(SEARCH_TV_SHOW_REQUEST_FRAGMENT);
         if (searchTvShowFragment == null) {
             searchTvShowFragment = new SearchTvShowFragment();
             getFragmentManager().beginTransaction()
-                    .add(searchTvShowFragment, tag)
+                    .add(searchTvShowFragment, SEARCH_TV_SHOW_REQUEST_FRAGMENT)
                     .commit();
         }
-        return searchTvShowFragment;
+        searchTvShowFragment.sendRequest(title);
     }
 }

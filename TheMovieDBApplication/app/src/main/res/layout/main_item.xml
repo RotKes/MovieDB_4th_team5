@@ -19,9 +19,10 @@
 
         <ImageView
             android:id="@+id/item_image"
-            android:layout_width="@dimen/image_width_item"
-            android:layout_height="@dimen/image_height_item"
-            android:layout_weight="1"/>
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_gravity="center"/>
 
         <TextView
             android:id="@+id/item_title"

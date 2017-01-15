@@ -36,7 +36,7 @@ public class MoviesListFragment extends Fragment {
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
     }
-    
+
 
     public void setList(List list) {
         this.list = list;

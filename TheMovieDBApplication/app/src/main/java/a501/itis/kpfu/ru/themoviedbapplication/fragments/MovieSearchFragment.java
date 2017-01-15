@@ -75,23 +75,13 @@ public class MovieSearchFragment extends Fragment {
     }
 
     public void updateFragment(String title) {
-        SearchMovieFragment searchMovieFragment;
-        MovieSearchFragment movieSearchFragment = new MovieSearchFragment();
-        getFragmentManager().beginTransaction()
-                .replace(R.id.contentContainer, movieSearchFragment, MovieSearchFragment.class.getName())
-                .commit();
-        searchMovieFragment = (SearchMovieFragment) getAsyncFragmentByTag(SEARCH_MOVIE_REQUEST_FRAGMENT);
-        searchMovieFragment.sendRequest(title);
-    }
-
-    public Fragment getAsyncFragmentByTag(String tag) {
-        SearchMovieFragment searchMovieFragment = (SearchMovieFragment) getFragmentManager().findFragmentByTag(tag);
+        SearchMovieFragment searchMovieFragment = (SearchMovieFragment) getFragmentManager().findFragmentByTag(SEARCH_MOVIE_REQUEST_FRAGMENT);
         if (searchMovieFragment == null) {
             searchMovieFragment = new SearchMovieFragment();
             getFragmentManager().beginTransaction()
-                    .add(searchMovieFragment, tag)
+                    .add(searchMovieFragment, SEARCH_MOVIE_REQUEST_FRAGMENT)
                     .commit();
         }
-        return searchMovieFragment;
+        searchMovieFragment.sendRequest(title);
     }
 }
