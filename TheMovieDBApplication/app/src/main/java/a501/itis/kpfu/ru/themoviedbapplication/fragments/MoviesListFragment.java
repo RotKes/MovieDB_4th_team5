@@ -8,7 +8,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import java.io.Serializable;
 import java.util.List;
 
 import a501.itis.kpfu.ru.themoviedbapplication.R;
@@ -37,12 +36,7 @@ public class MoviesListFragment extends Fragment {
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
     }
-
-    @Override
-    public void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
-        outState.putSerializable("popular_movie_list", (Serializable) list);
-    }
+    
 
     public void setList(List list) {
         this.list = list;

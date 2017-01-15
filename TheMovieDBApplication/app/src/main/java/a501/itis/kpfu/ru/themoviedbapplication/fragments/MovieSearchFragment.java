@@ -14,7 +14,6 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 
-import java.io.Serializable;
 import java.util.List;
 
 import a501.itis.kpfu.ru.themoviedbapplication.R;
@@ -65,18 +64,6 @@ public class MovieSearchFragment extends Fragment {
                 updateFragment(title);
             }
         });
-    }
-
-    @Override
-    public void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
-        outState.putSerializable("movie_list", (Serializable) list);
-    }
-
-    @Override
-    public void onActivityCreated(Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        list = (List) savedInstanceState.getSerializable("movie_list");
     }
 
     public void setList(List list) {
