@@ -80,8 +80,6 @@ public class FilmInfoActivity extends AppCompatActivity implements TaskListenerI
         filmOverview.setText(film.getOverview());
 
         Picasso.with(context).load("https://image.tmdb.org/t/p/w500" + filmInfoList.get(0).getPosterPath()).into(filmPoster);
-
-
     }
 
     @Override

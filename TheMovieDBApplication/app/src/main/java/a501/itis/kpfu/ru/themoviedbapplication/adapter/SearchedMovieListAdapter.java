@@ -17,9 +17,6 @@ import a501.itis.kpfu.ru.themoviedbapplication.R;
 import a501.itis.kpfu.ru.themoviedbapplication.activity.FilmInfoActivity;
 import a501.itis.kpfu.ru.themoviedbapplication.apiObjects.searching.SearchedMovie;
 
-/**
- * Created by Амир on 14.01.2017.
- */
 
 public class SearchedMovieListAdapter extends RecyclerView.Adapter<SearchedMovieListAdapter.SearchedMovieListViewHolder> {
     List<SearchedMovie> listOfMovies;
