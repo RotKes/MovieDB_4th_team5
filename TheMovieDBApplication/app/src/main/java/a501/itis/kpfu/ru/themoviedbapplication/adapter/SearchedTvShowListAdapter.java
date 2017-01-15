@@ -1,6 +1,7 @@
 package a501.itis.kpfu.ru.themoviedbapplication.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +14,7 @@ import com.squareup.picasso.Picasso;
 import java.util.List;
 
 import a501.itis.kpfu.ru.themoviedbapplication.R;
+import a501.itis.kpfu.ru.themoviedbapplication.activity.TvSeriesInfoActivity;
 import a501.itis.kpfu.ru.themoviedbapplication.apiObjects.searching.SearchedTvShow;
 
 /**
@@ -42,14 +44,14 @@ public class SearchedTvShowListAdapter extends RecyclerView.Adapter<SearchedTvSh
         Picasso.with(mContext)
                 .load("https://image.tmdb.org/t/p/w500" + tvShow.getPosterPath())
                 .into(holder.image);
-        /*holder.image.setOnClickListener(new View.OnClickListener() {
+        holder.image.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(mContext, TvSeriesInfoActivity.class);
                 intent.putExtra("seriesId", listOfTvShows.get(position).getId());
                 mContext.startActivity(intent);
             }
-        });*/
+        });
     }
 
     @Override
