@@ -17,15 +17,15 @@ import android.widget.EditText;
 import java.util.List;
 
 import a501.itis.kpfu.ru.themoviedbapplication.R;
-import a501.itis.kpfu.ru.themoviedbapplication.adapter.SearchedMovieListAdapter;
-import a501.itis.kpfu.ru.themoviedbapplication.fragments.async.SearchMovieFragment;
+import a501.itis.kpfu.ru.themoviedbapplication.adapter.SearchedTvShowListAdapter;
+import a501.itis.kpfu.ru.themoviedbapplication.fragments.async.SearchTvShowFragment;
 
 /**
- * Created by Амир on 14.01.2017.
+ * Created by Амир on 15.01.2017.
  */
 
-public class MovieSearchFragment extends Fragment {
-    public final String SEARCH_MOVIE_REQUEST_FRAGMENT = "search_movie_request_fragment";
+public class TvShowSearchFragment extends Fragment {
+    public final String SEARCH_TV_SHOW_REQUEST_FRAGMENT = "search_tv_show_request_fragment";
     RecyclerView rv;
     List list;
     EditText searchBox;
@@ -34,10 +34,10 @@ public class MovieSearchFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.movie_search_fragment, container, false);
-        rv = (RecyclerView) view.findViewById(R.id.searched_movies_list);
+        View view = inflater.inflate(R.layout.tv_show_search_fragment, container, false);
+        rv = (RecyclerView) view.findViewById(R.id.searched_tv_series_list);
         rv.setLayoutManager(new LinearLayoutManager(rv.getContext()));
-        SearchedMovieListAdapter adapter = new SearchedMovieListAdapter(getActivity(), list);
+        SearchedTvShowListAdapter adapter = new SearchedTvShowListAdapter(getActivity(), list);
         rv.setAdapter(adapter);
         return view;
     }
@@ -45,7 +45,7 @@ public class MovieSearchFragment extends Fragment {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        searchBox = (EditText) view.findViewById(R.id.edit_search_bar);
+        searchBox = (EditText) view.findViewById(R.id.edit_search_bar_series);
         searchBox.setOnKeyListener(new View.OnKeyListener() {
             public boolean onKey(View v, int keyCode, KeyEvent event) {
                 if (keyCode == KeyEvent.KEYCODE_ENTER && event.getAction() == KeyEvent.ACTION_DOWN) {
@@ -56,7 +56,7 @@ public class MovieSearchFragment extends Fragment {
                 return false;
             }
         });
-        submit = (Button) view.findViewById(R.id.button_search_bar);
+        submit = (Button) view.findViewById(R.id.button_search_bar_series);
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -75,23 +75,23 @@ public class MovieSearchFragment extends Fragment {
     }
 
     public void updateFragment(String title) {
-        SearchMovieFragment searchMovieFragment;
-        MovieSearchFragment movieSearchFragment = new MovieSearchFragment();
+        SearchTvShowFragment searchTvShowFragment;
+        TvShowSearchFragment tvShowSearchFragment = new TvShowSearchFragment();
         getFragmentManager().beginTransaction()
-                .replace(R.id.contentContainer, movieSearchFragment, MovieSearchFragment.class.getName())
+                .replace(R.id.contentContainer, tvShowSearchFragment, TvShowSearchFragment.class.getName())
                 .commit();
-        searchMovieFragment = (SearchMovieFragment) getAsyncFragmentByTag(SEARCH_MOVIE_REQUEST_FRAGMENT);
-        searchMovieFragment.sendRequest(title);
+        searchTvShowFragment = (SearchTvShowFragment) getAsyncFragmentByTag(SEARCH_TV_SHOW_REQUEST_FRAGMENT);
+        searchTvShowFragment.sendRequest(title);
     }
 
     public Fragment getAsyncFragmentByTag(String tag) {
-        SearchMovieFragment searchMovieFragment = (SearchMovieFragment) getFragmentManager().findFragmentByTag(tag);
-        if (searchMovieFragment == null) {
-            searchMovieFragment = new SearchMovieFragment();
+        SearchTvShowFragment searchTvShowFragment = (SearchTvShowFragment) getFragmentManager().findFragmentByTag(tag);
+        if (searchTvShowFragment == null) {
+            searchTvShowFragment = new SearchTvShowFragment();
             getFragmentManager().beginTransaction()
-                    .add(searchMovieFragment, tag)
+                    .add(searchTvShowFragment, tag)
                     .commit();
         }
-        return searchMovieFragment;
+        return searchTvShowFragment;
     }
 }

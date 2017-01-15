@@ -18,27 +18,27 @@ import a501.itis.kpfu.ru.themoviedbapplication.activity.FilmInfoActivity;
 import a501.itis.kpfu.ru.themoviedbapplication.apiObjects.searching.SearchedMovie;
 
 
-public class SearchedListAdapter extends RecyclerView.Adapter<SearchedListAdapter.SearchedListViewHolder> {
+public class SearchedMovieListAdapter extends RecyclerView.Adapter<SearchedMovieListAdapter.SearchedMovieListViewHolder> {
     List<SearchedMovie> listOfMovies;
     Context mContext;
 
-    public SearchedListAdapter(Context mContext, List list) {
+    public SearchedMovieListAdapter(Context mContext, List list) {
         this.mContext = mContext;
         this.listOfMovies = list;
     }
 
     @Override
-    public SearchedListAdapter.SearchedListViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public SearchedMovieListAdapter.SearchedMovieListViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.searched_item, parent, false);
-        return new SearchedListViewHolder(view);
+        return new SearchedMovieListViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(SearchedListAdapter.SearchedListViewHolder holder, final int position) {
+    public void onBindViewHolder(SearchedMovieListAdapter.SearchedMovieListViewHolder holder, final int position) {
         final SearchedMovie movie = listOfMovies.get(position);
         holder.title.setText(movie.getTitle());
         holder.info.setText(movie.getOverview());
-        holder.rating.setText(Double.toString(movie.getVoteAverage()));
+        holder.rating.setText("Rating : " + Double.toString(movie.getVoteAverage()));
         Picasso.with(mContext)
                 .load("https://image.tmdb.org/t/p/w500" + movie.getPosterPath())
                 .into(holder.image);
@@ -57,13 +57,13 @@ public class SearchedListAdapter extends RecyclerView.Adapter<SearchedListAdapte
         return listOfMovies == null ? 0 : listOfMovies.size();
     }
 
-    public class SearchedListViewHolder extends RecyclerView.ViewHolder{
+    public class SearchedMovieListViewHolder extends RecyclerView.ViewHolder{
         ImageView image;
         TextView title;
         TextView info;
         TextView rating;
 
-        public SearchedListViewHolder(View itemView) {
+        public SearchedMovieListViewHolder(View itemView) {
             super(itemView);
             image = (ImageView) itemView.findViewById(R.id.searched_item_image);
             title = (TextView) itemView.findViewById(R.id.searched_item_title);

@@ -10,22 +10,22 @@
         android:orientation="horizontal">
 
         <EditText
-            android:id="@+id/edit_search_bar"
+            android:id="@+id/edit_search_bar_series"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:imeOptions="actionDone"
             android:maxLines="1"
-            android:hint="@string/movies_edit_text_hint"/>
+            android:hint="@string/tv_series_edit_text_hint"/>
         <Button
-            android:id="@+id/button_search_bar"
+            android:id="@+id/button_search_bar_series"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="4"/>
     </LinearLayout>
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/searched_movies_list"
+        android:id="@+id/searched_tv_series_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 

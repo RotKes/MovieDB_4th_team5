@@ -15,9 +15,11 @@ import a501.itis.kpfu.ru.themoviedbapplication.fragments.MainPageFragment;
 import a501.itis.kpfu.ru.themoviedbapplication.fragments.MovieSearchFragment;
 import a501.itis.kpfu.ru.themoviedbapplication.fragments.MoviesListFragment;
 import a501.itis.kpfu.ru.themoviedbapplication.fragments.TvSerialsListFragment;
+import a501.itis.kpfu.ru.themoviedbapplication.fragments.TvShowSearchFragment;
 import a501.itis.kpfu.ru.themoviedbapplication.fragments.async.PopularRequestFilmsFragment;
 import a501.itis.kpfu.ru.themoviedbapplication.fragments.async.PopularRequestTvSeriesFragment;
 import a501.itis.kpfu.ru.themoviedbapplication.fragments.async.SearchMovieFragment;
+import a501.itis.kpfu.ru.themoviedbapplication.fragments.async.SearchTvShowFragment;
 import a501.itis.kpfu.ru.themoviedbapplication.interfaces.TaskListenerInterface;
 
 public class MainActivity extends AppCompatActivity implements TaskListenerInterface {
@@ -25,6 +27,7 @@ public class MainActivity extends AppCompatActivity implements TaskListenerInter
     private final String MOVIES_REQUEST_FRAGMENT = "movies_request_fragment";
     private final String TV_SERIES_REQUEST_FRAGMENT = "tv_series_request_fragment";
     public final String SEARCH_MOVIE_REQUEST_FRAGMENT = "search_movie_request_fragment";
+    public final String SEARCH_TV_SHOW_REQUEST_FRAGMENT = "search_tv_show_request_fragment";
     private final String MOVIES_LIST_FRAGMENT = "movies_list_fragment";
     private final String TV_SERIES_FRAGMENT = "tv_series_fragment";
     int workingFragment;
@@ -32,6 +35,7 @@ public class MainActivity extends AppCompatActivity implements TaskListenerInter
     PopularRequestTvSeriesFragment seriesFragment;
     MainPageFragment mainFragment;
     SearchMovieFragment searchMovieFragment;
+    SearchTvShowFragment searchTvShowFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,7 +69,13 @@ public class MainActivity extends AppCompatActivity implements TaskListenerInter
 
                 }
                 if (tabId == R.id.tab_series) {
-
+                    TvShowSearchFragment tvShowSearchFragment = new TvShowSearchFragment();
+                    getFragmentManager().beginTransaction()
+                            .replace(R.id.contentContainer, tvShowSearchFragment, TvShowSearchFragment.class.getName())
+                            .commit();
+                    searchTvShowFragment = (SearchTvShowFragment) getAsyncFragmentByTag(SEARCH_TV_SHOW_REQUEST_FRAGMENT);
+                    workingFragment = 4;
+                    searchTvShowFragment.sendRequest(" ");
                 }
             }
         });
@@ -105,6 +115,16 @@ public class MainActivity extends AppCompatActivity implements TaskListenerInter
             }
             return searchMovieFragment;
         }
+        else if (tag.equals(SEARCH_TV_SHOW_REQUEST_FRAGMENT)) {
+            SearchTvShowFragment searchTvShowFragment = (SearchTvShowFragment) getFragmentManager().findFragmentByTag(tag);
+            if (searchTvShowFragment == null) {
+                searchTvShowFragment = new SearchTvShowFragment();
+                getFragmentManager().beginTransaction()
+                        .add(searchTvShowFragment, tag)
+                        .commit();
+            }
+            return searchTvShowFragment;
+        }
         return null;
     }
 
@@ -135,6 +155,15 @@ public class MainActivity extends AppCompatActivity implements TaskListenerInter
                     movieSearchFragment.setList(list);
                     getFragmentManager().beginTransaction()
                             .replace(R.id.contentContainer, movieSearchFragment, MovieSearchFragment.class.getName())
+                            .commit();
+                }
+                break;
+            case 4:
+                if (workingFragment == 4) {
+                    TvShowSearchFragment tvShowSearchFragment = new TvShowSearchFragment();
+                    tvShowSearchFragment.setList(list);
+                    getFragmentManager().beginTransaction()
+                            .replace(R.id.contentContainer, tvShowSearchFragment, TvShowSearchFragment.class.getName())
                             .commit();
                 }
                 break;

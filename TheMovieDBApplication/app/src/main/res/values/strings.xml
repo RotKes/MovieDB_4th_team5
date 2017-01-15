@@ -2,6 +2,8 @@
     <string name="app_name">TheMovieDBApplication</string>
     <string name="text_films">Популярные фильмы</string>
     <string name="text_tv_series">Популярные сериалы</string>
+    <string name="movies_edit_text_hint">Find movie…</string>
+    <string name="tv_series_edit_text_hint">Find TV Show…</string>
     <string name="title_activity_scrolling">ScrollingActivity</string>
     <string name="large_text">
         "Material is the metaphor.\n\n"
