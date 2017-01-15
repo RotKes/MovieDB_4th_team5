@@ -41,7 +41,7 @@ public class SearchedListAdapter extends RecyclerView.Adapter<SearchedListAdapte
         final SearchedMovie movie = listOfMovies.get(position);
         holder.title.setText(movie.getTitle());
         holder.info.setText(movie.getOverview());
-        holder.rating.setText(Double.toString(movie.getVoteAverage()));
+        holder.rating.setText("Rating : " + Double.toString(movie.getVoteAverage()));
         Picasso.with(mContext)
                 .load("https://image.tmdb.org/t/p/w500" + movie.getPosterPath())
                 .into(holder.image);

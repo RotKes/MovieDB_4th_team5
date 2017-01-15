@@ -72,10 +72,10 @@ public class FilmInfoActivity extends AppCompatActivity implements TaskListenerI
             filmCountryName.setText("-");
         }
         else {
-            filmInfoList.get(0)
+            filmCountryName.setText(filmInfoList.get(0)
                     .getProductionCountries()
                     .get(0)
-                    .getIso31661();
+                    .getIso31661());
         }
         filmOverview.setText(film.getOverview());
 
