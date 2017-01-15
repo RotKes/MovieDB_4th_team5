@@ -129,6 +129,11 @@ public class MainActivity extends AppCompatActivity implements TaskListenerInter
     }
 
     @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        
+    }
+
+    @Override
     public void onTaskFinish(List list, int id) {
         switch (id) {
             case 2:
