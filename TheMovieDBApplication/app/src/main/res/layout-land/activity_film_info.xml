@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/filmPoster"
+        android:layout_width="180dp"
+        android:layout_height="250dp"
+        />
+
+
+    <TextView
+        android:id="@+id/filmName"
+        android:textStyle="italic"
+        android:textColor="@color/titleColor"
+        android:textSize="@dimen/text_size_film_info"
+        android:layout_width="160dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_toEndOf="@+id/filmPoster" />
+
+    <TextView
+        android:id="@+id/filmYear"
+        android:textSize="@dimen/text_size_film_info"
+        android:textColor="@color/defaultColorText"
+        android:text="RELEASE DATE :"
+        android:layout_width="140dp"
+        android:layout_height="50dp"
+        android:layout_below="@+id/filmName"
+        android:layout_toEndOf="@+id/filmPoster" />
+
+    <TextView
+        android:id="@+id/filmYearValue"
+        android:textSize="@dimen/text_size_film_info"
+        android:layout_width="140dp"
+        android:layout_height="25dp"
+        android:layout_below="@+id/filmYear"
+        android:layout_toEndOf="@+id/filmPoster" />
+
+    <TextView
+        android:id="@+id/filmCountry"
+        android:textSize="@dimen/text_size_film_info"
+        android:text="COUNTRY :"
+        android:textColor="@color/defaultColorText"
+        android:layout_width="140dp"
+        android:layout_height="30dp"
+        android:layout_below="@+id/filmYearValue"
+        android:layout_toEndOf="@+id/filmPoster" />
+
+    <TextView
+        android:id="@+id/filmCountryName"
+        android:textSize="@dimen/text_size_film_info"
+        android:layout_width="140dp"
+        android:layout_height="25dp"
+        android:layout_below="@+id/filmCountry"
+        android:layout_toEndOf="@+id/filmPoster" />
+
+    <TextView
+        android:id="@+id/filmOverview"
+        android:textSize="20dp"
+        android:layout_width="230dp"
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true" />
+
+
+</RelativeLayout>
