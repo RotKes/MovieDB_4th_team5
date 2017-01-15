@@ -60,7 +60,7 @@ public class MovieSearchFragment extends Fragment {
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                title = searchBox.getText().toString();
+                title = searchBox.getText().toString().equals("") ? " " : searchBox.getText().toString();
                 updateFragment(title);
             }
         });
