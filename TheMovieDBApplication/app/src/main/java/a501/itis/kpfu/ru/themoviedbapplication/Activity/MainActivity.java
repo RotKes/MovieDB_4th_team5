@@ -4,6 +4,7 @@ import android.app.Fragment;
 import android.os.Bundle;
 import android.support.annotation.IdRes;
 import android.support.v7.app.AppCompatActivity;
+import android.widget.Toast;
 
 import com.roughike.bottombar.BottomBar;
 import com.roughike.bottombar.OnTabSelectListener;
@@ -39,54 +40,66 @@ public class MainActivity extends AppCompatActivity implements TaskListenerInter
     TvShowSearchFragment tvShowSearchFragment;
     MovieSearchFragment movieSearchFragment;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
+
         BottomBar bottomBar = (BottomBar) findViewById(R.id.bottomBar);
-        if (savedInstanceState != null) {
-            setFragmentById(savedInstanceState.getInt("workingFragment"));
-        }
-        else {
-            bottomBar.setDefaultTab(R.id.tab_main);
-        }
+
+
         bottomBar.setOnTabSelectListener(new OnTabSelectListener() {
             @Override
             public void onTabSelected(@IdRes int tabId) {
+
                 if (tabId == R.id.tab_movies) {
-                    movieSearchFragment = new MovieSearchFragment();
-                    getFragmentManager().beginTransaction()
-                            .replace(R.id.contentContainer, movieSearchFragment, MovieSearchFragment.class.getName())
-                            .commit();
-                    searchMovieFragment = (SearchMovieFragment) getAsyncFragmentByTag(SEARCH_MOVIE_REQUEST_FRAGMENT);
-                    workingFragment = 3;
-                    searchMovieFragment.sendRequest(" ");
+                     {
+                         movieSearchFragment = (MovieSearchFragment) getFragmentManager().findFragmentByTag(MovieSearchFragment.class.getName());
+                        if (movieSearchFragment == null) {
+                            movieSearchFragment = new MovieSearchFragment();
+                        }
+                        getFragmentManager().beginTransaction()
+                                .replace(R.id.contentContainer, movieSearchFragment, MovieSearchFragment.class.getName())
+                                .commit();
+                        searchMovieFragment = (SearchMovieFragment) getAsyncFragmentByTag(SEARCH_MOVIE_REQUEST_FRAGMENT);
+                        workingFragment = 3;
+                        searchMovieFragment.sendRequest("ave");
+                    }
+
                 }
+
                 if (tabId == R.id.tab_main) {
-                    mainFragment = new MainPageFragment();
-                    getFragmentManager().beginTransaction()
-                            .replace(R.id.contentContainer, mainFragment, MainPageFragment.class.getName())
-                            .commit();
-                    filmsFragment = (PopularRequestFilmsFragment) getAsyncFragmentByTag(MOVIES_REQUEST_FRAGMENT);
-                    workingFragment = 1;
-                    filmsFragment.startAsync();
-                    seriesFragment = (PopularRequestTvSeriesFragment) getAsyncFragmentByTag(TV_SERIES_REQUEST_FRAGMENT);
-                    seriesFragment.startAsync();
+                     {
+                        mainFragment = new MainPageFragment();
+                        getFragmentManager().beginTransaction()
+                                .replace(R.id.contentContainer, mainFragment, MainPageFragment.class.getName())
+                                .commit();
+                        filmsFragment = (PopularRequestFilmsFragment) getAsyncFragmentByTag(MOVIES_REQUEST_FRAGMENT);
+                        workingFragment = 1;
+                        filmsFragment.startAsync();
+                        seriesFragment = (PopularRequestTvSeriesFragment) getAsyncFragmentByTag(TV_SERIES_REQUEST_FRAGMENT);
+                        seriesFragment.startAsync();
+                    }
+
 
                 }
                 if (tabId == R.id.tab_series) {
-                    tvShowSearchFragment = new TvShowSearchFragment();
-                    getFragmentManager().beginTransaction()
-                            .replace(R.id.contentContainer, tvShowSearchFragment, TvShowSearchFragment.class.getName())
-                            .commit();
-                    searchTvShowFragment = (SearchTvShowFragment) getAsyncFragmentByTag(SEARCH_TV_SHOW_REQUEST_FRAGMENT);
-                    workingFragment = 4;
-                    searchTvShowFragment.sendRequest(" ");
+                     {
+                        tvShowSearchFragment = new TvShowSearchFragment();
+                        getFragmentManager().beginTransaction()
+                                .replace(R.id.contentContainer, tvShowSearchFragment, TvShowSearchFragment.class.getName())
+                                .commit();
+                        searchTvShowFragment = (SearchTvShowFragment) getAsyncFragmentByTag(SEARCH_TV_SHOW_REQUEST_FRAGMENT);
+                        workingFragment = 4;
+                        searchTvShowFragment.sendRequest(" ");
+                    }
                 }
             }
         });
-        bottomBar.setDefaultTab(R.id.tab_main);
+
     }
 
     public Fragment getAsyncFragmentByTag(String tag) {
@@ -141,26 +154,6 @@ public class MainActivity extends AppCompatActivity implements TaskListenerInter
         outState.putInt("workingFragment", workingFragment);
     }
 
-    public void setFragmentById(int id) {
-        if (id == 1) {
-            mainFragment = (MainPageFragment) getFragmentManager().findFragmentByTag(MainPageFragment.class.getName());
-            getFragmentManager().beginTransaction()
-                    .replace(R.id.contentContainer, mainFragment, MainPageFragment.class.getName())
-                    .commit();
-        }
-        else if (id == 3) {
-            movieSearchFragment = (MovieSearchFragment) getFragmentManager().findFragmentByTag(MovieSearchFragment.class.getName());
-            getFragmentManager().beginTransaction()
-                    .replace(R.id.contentContainer, movieSearchFragment, MovieSearchFragment.class.getName())
-                    .commit();
-        }
-        else if (id == 4) {
-            tvShowSearchFragment = (TvShowSearchFragment) getFragmentManager().findFragmentByTag(TvShowSearchFragment.class.getName());
-            getFragmentManager().beginTransaction()
-                    .replace(R.id.contentContainer, tvShowSearchFragment, TvShowSearchFragment.class.getName())
-                    .commit();
-        }
-    }
 
     @Override
     public void onTaskFinish(List list, int id) {
@@ -187,9 +180,11 @@ public class MainActivity extends AppCompatActivity implements TaskListenerInter
                 if (workingFragment == 3) {
                     MovieSearchFragment movieSearchFragment = new MovieSearchFragment();
                     movieSearchFragment.setList(list);
+
                     getFragmentManager().beginTransaction()
                             .replace(R.id.contentContainer, movieSearchFragment, MovieSearchFragment.class.getName())
                             .commit();
+
                 }
                 break;
             case 4:

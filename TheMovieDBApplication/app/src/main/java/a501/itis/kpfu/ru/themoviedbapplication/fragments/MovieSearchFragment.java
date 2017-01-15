@@ -14,12 +14,12 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 
-import java.io.Serializable;
 import java.util.List;
 
 import a501.itis.kpfu.ru.themoviedbapplication.R;
 import a501.itis.kpfu.ru.themoviedbapplication.adapter.SearchedMovieListAdapter;
 import a501.itis.kpfu.ru.themoviedbapplication.fragments.async.SearchMovieFragment;
+import a501.itis.kpfu.ru.themoviedbapplication.interfaces.TaskListenerInterface;
 
 /**
  * Created by Амир on 14.01.2017.
@@ -32,16 +32,24 @@ public class MovieSearchFragment extends Fragment {
     EditText searchBox;
     Button submit;
     String title;
+    SearchedMovieListAdapter adapter;
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.movie_search_fragment, container, false);
         rv = (RecyclerView) view.findViewById(R.id.searched_movies_list);
         rv.setLayoutManager(new LinearLayoutManager(rv.getContext()));
-        SearchedMovieListAdapter adapter = new SearchedMovieListAdapter(getActivity(), list);
+        adapter = new SearchedMovieListAdapter(getActivity(), list);
         rv.setAdapter(adapter);
         return view;
     }
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setRetainInstance(true);
+    }
+
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
@@ -67,17 +75,6 @@ public class MovieSearchFragment extends Fragment {
         });
     }
 
-    @Override
-    public void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
-        outState.putSerializable("movie_list", (Serializable) list);
-    }
-
-    @Override
-    public void onActivityCreated(Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        list = (List) savedInstanceState.getSerializable("movie_list");
-    }
 
     public void setList(List list) {
         this.list = list;
@@ -89,10 +86,6 @@ public class MovieSearchFragment extends Fragment {
 
     public void updateFragment(String title) {
         SearchMovieFragment searchMovieFragment;
-        MovieSearchFragment movieSearchFragment = new MovieSearchFragment();
-        getFragmentManager().beginTransaction()
-                .replace(R.id.contentContainer, movieSearchFragment, MovieSearchFragment.class.getName())
-                .commit();
         searchMovieFragment = (SearchMovieFragment) getAsyncFragmentByTag(SEARCH_MOVIE_REQUEST_FRAGMENT);
         searchMovieFragment.sendRequest(title);
     }
