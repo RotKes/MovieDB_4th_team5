@@ -3,24 +3,19 @@ package a501.itis.kpfu.ru.themoviedbapplication.activity;
 import android.app.Fragment;
 import android.content.Context;
 import android.content.Intent;
-import android.provider.ContactsContract;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 
-import java.util.LinkedList;
 import java.util.List;
 
 import a501.itis.kpfu.ru.themoviedbapplication.R;
 import a501.itis.kpfu.ru.themoviedbapplication.apiObjects.fillmsObjects.FilmObject;
 import a501.itis.kpfu.ru.themoviedbapplication.fragments.async.FilmRequestFragment;
-import a501.itis.kpfu.ru.themoviedbapplication.fragments.async.PopularRequestFilmsFragment;
 import a501.itis.kpfu.ru.themoviedbapplication.interfaces.TaskListenerInterface;
-import retrofit2.Call;
 
 public class FilmInfoActivity extends AppCompatActivity implements TaskListenerInterface{
     private final String MOVIE_REQUEST_FRAGMENT = "movie_request";
@@ -73,12 +68,18 @@ public class FilmInfoActivity extends AppCompatActivity implements TaskListenerI
         FilmObject film = filmInfoList.get(0);
         nameFilm.setText(filmInfoList.get(0).getTitle());
         filmYearValue.setText(filmInfoList.get(0).getReleaseDate());
-        filmCountryName.setText(filmInfoList.get(0).getProductionCountries().get(0).getIso31661());
+        if (filmInfoList.get(0).getProductionCountries().size() == 0) {
+            filmCountryName.setText("-");
+        }
+        else {
+            filmCountryName.setText(filmInfoList.get(0)
+                    .getProductionCountries()
+                    .get(0)
+                    .getIso31661());
+        }
         filmOverview.setText(film.getOverview());
 
         Picasso.with(context).load("https://image.tmdb.org/t/p/w500" + filmInfoList.get(0).getPosterPath()).into(filmPoster);
-
-
     }
 
     @Override

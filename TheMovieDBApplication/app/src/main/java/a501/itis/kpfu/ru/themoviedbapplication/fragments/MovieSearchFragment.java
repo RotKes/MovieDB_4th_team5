@@ -1,6 +1,7 @@
 package a501.itis.kpfu.ru.themoviedbapplication.fragments;
 
 import android.app.Fragment;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
@@ -9,23 +10,27 @@ import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 
 import java.util.List;
 
 import a501.itis.kpfu.ru.themoviedbapplication.R;
 import a501.itis.kpfu.ru.themoviedbapplication.adapter.SearchedListAdapter;
+import a501.itis.kpfu.ru.themoviedbapplication.fragments.async.SearchMovieFragment;
 
 /**
  * Created by Амир on 14.01.2017.
  */
 
 public class MovieSearchFragment extends Fragment {
+    public final String SEARCH_MOVIE_REQUEST_FRAGMENT = "search_movie_request_fragment";
     RecyclerView rv;
     List list;
     EditText searchBox;
+    Button submit;
+    String title;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -41,20 +46,52 @@ public class MovieSearchFragment extends Fragment {
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         searchBox = (EditText) view.findViewById(R.id.edit_search_bar);
-        searchBox.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-            @Override
-            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-                boolean handled = false;
-                if (actionId == EditorInfo.IME_ACTION_SEND) {
-                    searchBox.getText();
-                    handled = true;
+        searchBox.setOnKeyListener(new View.OnKeyListener() {
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                if (keyCode == KeyEvent.KEYCODE_ENTER && event.getAction() == KeyEvent.ACTION_DOWN) {
+                    InputMethodManager imm = (InputMethodManager)getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+                    imm.hideSoftInputFromWindow(searchBox.getWindowToken(), 0);
+                    return true;
                 }
-                return handled;
+                return false;
+            }
+        });
+        submit = (Button) view.findViewById(R.id.button_search_bar);
+        submit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                title = searchBox.getText().toString();
+                updateFragment(title);
             }
         });
     }
 
     public void setList(List list) {
         this.list = list;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void updateFragment(String title) {
+        SearchMovieFragment searchMovieFragment;
+        MovieSearchFragment movieSearchFragment = new MovieSearchFragment();
+        getFragmentManager().beginTransaction()
+                .replace(R.id.contentContainer, movieSearchFragment, MovieSearchFragment.class.getName())
+                .commit();
+        searchMovieFragment = (SearchMovieFragment) getAsyncFragmentByTag(SEARCH_MOVIE_REQUEST_FRAGMENT);
+        searchMovieFragment.sendRequest(title);
+    }
+
+    public Fragment getAsyncFragmentByTag(String tag) {
+        SearchMovieFragment searchMovieFragment = (SearchMovieFragment) getFragmentManager().findFragmentByTag(tag);
+        if (searchMovieFragment == null) {
+            searchMovieFragment = new SearchMovieFragment();
+            getFragmentManager().beginTransaction()
+                    .add(searchMovieFragment, tag)
+                    .commit();
+        }
+        return searchMovieFragment;
     }
 }

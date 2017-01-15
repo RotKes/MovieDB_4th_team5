@@ -24,7 +24,7 @@ public class MainActivity extends AppCompatActivity implements TaskListenerInter
 
     private final String MOVIES_REQUEST_FRAGMENT = "movies_request_fragment";
     private final String TV_SERIES_REQUEST_FRAGMENT = "tv_series_request_fragment";
-    private final String SEARCH_MOVIE_REQUEST_FRAGMENT = "search_movie_request_fragment";
+    public final String SEARCH_MOVIE_REQUEST_FRAGMENT = "search_movie_request_fragment";
     private final String MOVIES_LIST_FRAGMENT = "movies_list_fragment";
     private final String TV_SERIES_FRAGMENT = "tv_series_fragment";
     int workingFragment;
@@ -50,7 +50,7 @@ public class MainActivity extends AppCompatActivity implements TaskListenerInter
                             .commit();
                     searchMovieFragment = (SearchMovieFragment) getAsyncFragmentByTag(SEARCH_MOVIE_REQUEST_FRAGMENT);
                     workingFragment = 3;
-                    searchMovieFragment.sendRequest("Avengers");
+                    searchMovieFragment.sendRequest(" ");
                 }
                 if (tabId == R.id.tab_main) {
                     mainFragment = new MainPageFragment();
@@ -112,7 +112,6 @@ public class MainActivity extends AppCompatActivity implements TaskListenerInter
     public void onTaskFinish(List list, int id) {
         switch (id) {
             case 2:
-
                 if (workingFragment == 1) {
                     MoviesListFragment moviesFragment = new MoviesListFragment();
                     moviesFragment.setList(list);
