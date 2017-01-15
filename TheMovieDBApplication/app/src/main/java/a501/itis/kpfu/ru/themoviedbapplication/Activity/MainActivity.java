@@ -36,6 +36,8 @@ public class MainActivity extends AppCompatActivity implements TaskListenerInter
     MainPageFragment mainFragment;
     SearchMovieFragment searchMovieFragment;
     SearchTvShowFragment searchTvShowFragment;
+    TvShowSearchFragment tvShowSearchFragment;
+    MovieSearchFragment movieSearchFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,12 +45,17 @@ public class MainActivity extends AppCompatActivity implements TaskListenerInter
         setContentView(R.layout.activity_main);
 
         BottomBar bottomBar = (BottomBar) findViewById(R.id.bottomBar);
-        bottomBar.setDefaultTab(R.id.tab_main);
+        if (savedInstanceState != null) {
+            setFragmentById(savedInstanceState.getInt("workingFragment"));
+        }
+        else {
+            bottomBar.setDefaultTab(R.id.tab_main);
+        }
         bottomBar.setOnTabSelectListener(new OnTabSelectListener() {
             @Override
             public void onTabSelected(@IdRes int tabId) {
                 if (tabId == R.id.tab_movies) {
-                    MovieSearchFragment movieSearchFragment = new MovieSearchFragment();
+                    movieSearchFragment = new MovieSearchFragment();
                     getFragmentManager().beginTransaction()
                             .replace(R.id.contentContainer, movieSearchFragment, MovieSearchFragment.class.getName())
                             .commit();
@@ -69,7 +76,7 @@ public class MainActivity extends AppCompatActivity implements TaskListenerInter
 
                 }
                 if (tabId == R.id.tab_series) {
-                    TvShowSearchFragment tvShowSearchFragment = new TvShowSearchFragment();
+                    tvShowSearchFragment = new TvShowSearchFragment();
                     getFragmentManager().beginTransaction()
                             .replace(R.id.contentContainer, tvShowSearchFragment, TvShowSearchFragment.class.getName())
                             .commit();
@@ -130,7 +137,29 @@ public class MainActivity extends AppCompatActivity implements TaskListenerInter
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
-        
+        super.onSaveInstanceState(outState);
+        outState.putInt("workingFragment", workingFragment);
+    }
+
+    public void setFragmentById(int id) {
+        if (id == 1) {
+            mainFragment = (MainPageFragment) getFragmentManager().findFragmentByTag(MainPageFragment.class.getName());
+            getFragmentManager().beginTransaction()
+                    .replace(R.id.contentContainer, mainFragment, MainPageFragment.class.getName())
+                    .commit();
+        }
+        else if (id == 3) {
+            movieSearchFragment = (MovieSearchFragment) getFragmentManager().findFragmentByTag(MovieSearchFragment.class.getName());
+            getFragmentManager().beginTransaction()
+                    .replace(R.id.contentContainer, movieSearchFragment, MovieSearchFragment.class.getName())
+                    .commit();
+        }
+        else if (id == 4) {
+            tvShowSearchFragment = (TvShowSearchFragment) getFragmentManager().findFragmentByTag(TvShowSearchFragment.class.getName());
+            getFragmentManager().beginTransaction()
+                    .replace(R.id.contentContainer, tvShowSearchFragment, TvShowSearchFragment.class.getName())
+                    .commit();
+        }
     }
 
     @Override

@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import java.io.Serializable;
 import java.util.List;
 
 import a501.itis.kpfu.ru.themoviedbapplication.R;
@@ -21,6 +22,7 @@ public class MoviesListFragment extends Fragment {
     RecyclerView rv;
     List list;
 
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.main_page_movies_list, container, false);
         rv = (RecyclerView) view.findViewById(R.id.movies_list);
@@ -36,7 +38,13 @@ public class MoviesListFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
     }
 
-    public void setList( List list) {
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putSerializable("popular_movie_list", (Serializable) list);
+    }
+
+    public void setList(List list) {
         this.list = list;
     }
 }

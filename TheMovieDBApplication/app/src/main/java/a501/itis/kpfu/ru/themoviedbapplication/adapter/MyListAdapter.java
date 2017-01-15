@@ -80,6 +80,8 @@ public class MyListAdapter extends RecyclerView.Adapter<MyListAdapter.MyListView
 
     }
 
+
+
     @Override
     public int getItemCount() {
         if(id == 1) {
