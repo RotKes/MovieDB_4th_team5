@@ -31,15 +31,21 @@ public class TvShowSearchFragment extends Fragment {
     EditText searchBox;
     Button submit;
     String title;
+    SearchedTvShowListAdapter adapter;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.tv_show_search_fragment, container, false);
         rv = (RecyclerView) view.findViewById(R.id.searched_tv_series_list);
         rv.setLayoutManager(new LinearLayoutManager(rv.getContext()));
-        SearchedTvShowListAdapter adapter = new SearchedTvShowListAdapter(getActivity(), list);
+        adapter = new SearchedTvShowListAdapter(getActivity(), list);
         rv.setAdapter(adapter);
         return view;
+    }
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setRetainInstance(true);
     }
 
     @Override
