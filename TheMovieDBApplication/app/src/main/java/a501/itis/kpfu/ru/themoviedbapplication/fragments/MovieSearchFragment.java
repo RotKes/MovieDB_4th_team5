@@ -31,16 +31,24 @@ public class MovieSearchFragment extends Fragment {
     EditText searchBox;
     Button submit;
     String title;
+    SearchedMovieListAdapter adapter;
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.movie_search_fragment, container, false);
         rv = (RecyclerView) view.findViewById(R.id.searched_movies_list);
         rv.setLayoutManager(new LinearLayoutManager(rv.getContext()));
-        SearchedMovieListAdapter adapter = new SearchedMovieListAdapter(getActivity(), list);
+        adapter = new SearchedMovieListAdapter(getActivity(), list);
         rv.setAdapter(adapter);
         return view;
     }
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setRetainInstance(true);
+    }
+
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
