@@ -28,13 +28,7 @@ public class TvSerialsListFragment extends Fragment {
         rv.setAdapter(adapter);
         return view;
     }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setRetainInstance(true);
-    }
-
+    
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
