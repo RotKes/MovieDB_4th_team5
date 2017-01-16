@@ -24,16 +24,17 @@ public class TvSerialsListFragment extends Fragment {
         View view = inflater.inflate(R.layout.tv_series_fragment, container, false);
         rv = (RecyclerView) view.findViewById(R.id.tv_series_recycler);
         rv.setLayoutManager(new LinearLayoutManager(rv.getContext(), LinearLayoutManager.HORIZONTAL, false));
-        MyListAdapter adapter = new MyListAdapter(getActivity(), list, 2);
-        rv.setAdapter(adapter);
+        if (list != null) {
+
+
+            MyListAdapter adapter = new MyListAdapter(getActivity(), list, 2);
+            rv.setAdapter(adapter);
+        }
         return view;
+
     }
 
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setRetainInstance(true);
-    }
+
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {

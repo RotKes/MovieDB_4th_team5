@@ -46,35 +46,35 @@ public class MainActivity extends AppCompatActivity implements TaskListenerInter
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
-
+        if(savedInstanceState!=null) {
+            workingFragment = savedInstanceState.getInt("workingFragment");
+        }
         BottomBar bottomBar = (BottomBar) findViewById(R.id.bottomBar);
-
 
         bottomBar.setOnTabSelectListener(new OnTabSelectListener() {
             @Override
             public void onTabSelected(@IdRes int tabId) {
 
                 if (tabId == R.id.tab_movies) {
+                    if(workingFragment!=3)
                      {
-                         movieSearchFragment = (MovieSearchFragment) getFragmentManager().findFragmentByTag(MovieSearchFragment.class.getName());
-                        if (movieSearchFragment == null) {
-                            movieSearchFragment = new MovieSearchFragment();
-                        }
-                        getFragmentManager().beginTransaction()
+                         movieSearchFragment = new MovieSearchFragment();
+                         getFragmentManager().beginTransaction()
                                 .replace(R.id.contentContainer, movieSearchFragment, MovieSearchFragment.class.getName())
                                 .commit();
                         searchMovieFragment = (SearchMovieFragment) getAsyncFragmentByTag(SEARCH_MOVIE_REQUEST_FRAGMENT);
                         workingFragment = 3;
-                        searchMovieFragment.sendRequest("ave");
+                        searchMovieFragment.sendRequest(" ");
                     }
 
                 }
 
                 if (tabId == R.id.tab_main) {
+                    if(workingFragment!=1)
                      {
                         mainFragment = new MainPageFragment();
-                        getFragmentManager().beginTransaction()
+
+                         getFragmentManager().beginTransaction()
                                 .replace(R.id.contentContainer, mainFragment, MainPageFragment.class.getName())
                                 .commit();
                         filmsFragment = (PopularRequestFilmsFragment) getAsyncFragmentByTag(MOVIES_REQUEST_FRAGMENT);
@@ -84,9 +84,9 @@ public class MainActivity extends AppCompatActivity implements TaskListenerInter
                         seriesFragment.startAsync();
                     }
 
-
                 }
                 if (tabId == R.id.tab_series) {
+                    if (workingFragment!=4)
                      {
                         tvShowSearchFragment = new TvShowSearchFragment();
                         getFragmentManager().beginTransaction()

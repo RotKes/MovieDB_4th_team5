@@ -14,9 +14,7 @@ import java.util.List;
 import a501.itis.kpfu.ru.themoviedbapplication.R;
 import a501.itis.kpfu.ru.themoviedbapplication.adapter.MyListAdapter;
 
-/**
- * Created by Амир on 13.01.2017.
- */
+
 
 public class MoviesListFragment extends Fragment {
     RecyclerView rv;
@@ -27,16 +25,15 @@ public class MoviesListFragment extends Fragment {
         View view = inflater.inflate(R.layout.main_page_movies_list, container, false);
         rv = (RecyclerView) view.findViewById(R.id.movies_list);
         rv.setLayoutManager(new LinearLayoutManager(rv.getContext(), LinearLayoutManager.HORIZONTAL, false));
-        MyListAdapter adapter = new MyListAdapter(getActivity(), list ,1 );
-        rv.setAdapter(adapter);
-        return view;
+        if(list!=null) {
+            MyListAdapter adapter = new MyListAdapter(getActivity(), list, 1);
+            rv.setAdapter(adapter);
+        }
+            return view;
+
     }
 
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setRetainInstance(true);
-    }
+
 
 
     @Override
@@ -46,6 +43,7 @@ public class MoviesListFragment extends Fragment {
 
 
     public void setList(List list) {
+
         this.list = list;
     }
 }

@@ -17,17 +17,17 @@ import a501.itis.kpfu.ru.themoviedbapplication.apiObjects.fillmsObjects.FilmObje
 import a501.itis.kpfu.ru.themoviedbapplication.fragments.async.FilmRequestFragment;
 import a501.itis.kpfu.ru.themoviedbapplication.interfaces.TaskListenerInterface;
 
-public class FilmInfoActivity extends AppCompatActivity implements TaskListenerInterface{
+public class FilmInfoActivity extends AppCompatActivity implements TaskListenerInterface {
     private final String MOVIE_REQUEST_FRAGMENT = "movie_request";
     List<FilmObject> filmInfoList;
     TextView nameFilm;
-    TextView filmYear;
     TextView filmYearValue;
-    TextView filmCountry;
     TextView filmCountryName;
     TextView filmOverview;
     ImageView filmPoster;
     Context context;
+    Bundle bundle;
+    String posterPath;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,22 +36,26 @@ public class FilmInfoActivity extends AppCompatActivity implements TaskListenerI
         context = this;
 
         nameFilm = (TextView) findViewById(R.id.filmName);
-        filmYear = (TextView) findViewById(R.id.filmYear);
         filmYearValue = (TextView) findViewById(R.id.filmYearValue);
-        filmCountry = (TextView) findViewById(R.id.filmCountry);
         filmCountryName = (TextView) findViewById(R.id.filmCountryName);
         filmOverview = (TextView) findViewById(R.id.filmOverview);
 
         filmPoster = (ImageView) findViewById(R.id.filmPoster);
 
         FilmRequestFragment filmRequestFragment = (FilmRequestFragment) getAsyncFragmentByTag(MOVIE_REQUEST_FRAGMENT);
-        Intent intent = getIntent();
-        filmRequestFragment.sendRequest(intent.getIntExtra("filmId", 1));
+
+        bundle = savedInstanceState;
+        if (bundle != null) {
+            setSavedData();
+        } else {
+            Intent intent = getIntent();
+            filmRequestFragment.sendRequest(intent.getIntExtra("filmId", 1));
+        }
 
     }
 
-    private Fragment getAsyncFragmentByTag(String tag){
-        Fragment fragment =  getFragmentManager().findFragmentByTag(tag);
+    private Fragment getAsyncFragmentByTag(String tag) {
+        Fragment fragment = getFragmentManager().findFragmentByTag(tag);
         if (fragment == null) {
             fragment = new FilmRequestFragment();
             getFragmentManager()
@@ -62,28 +66,49 @@ public class FilmInfoActivity extends AppCompatActivity implements TaskListenerI
         return fragment;
     }
 
+
     @Override
     public void onTaskFinish(List list, int id) {
-        filmInfoList =  list;
+        filmInfoList = list;
         FilmObject film = filmInfoList.get(0);
         nameFilm.setText(filmInfoList.get(0).getTitle());
         filmYearValue.setText(filmInfoList.get(0).getReleaseDate());
         if (filmInfoList.get(0).getProductionCountries().size() == 0) {
             filmCountryName.setText("-");
-        }
-        else {
+        } else {
             filmCountryName.setText(filmInfoList.get(0)
                     .getProductionCountries()
                     .get(0)
                     .getIso31661());
         }
         filmOverview.setText(film.getOverview());
-
         Picasso.with(context).load("https://image.tmdb.org/t/p/w500" + filmInfoList.get(0).getPosterPath()).into(filmPoster);
+        posterPath = filmInfoList.get(0).getPosterPath();
     }
 
     @Override
     public void onTaskStarted() {
+
+    }
+
+    public void setSavedData() {
+        nameFilm.setText(bundle.getString("name"));
+        filmYearValue.setText(bundle.getString("year"));
+        filmCountryName.setText(bundle.getString("country"));
+        filmOverview.setText(bundle.getString("overview"));
+        Picasso.with(context).load("https://image.tmdb.org/t/p/w500" + bundle.getString("poster")).into(filmPoster);
+        posterPath = bundle.getString("poster");
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+            outState.putString("name", nameFilm.getText().toString());
+            outState.putString("year", filmYearValue.getText().toString());
+            outState.putString("country", filmCountryName.getText().toString());
+            outState.putString("overview", filmOverview.getText().toString());
+            outState.putString("poster", posterPath);
+
 
     }
 }

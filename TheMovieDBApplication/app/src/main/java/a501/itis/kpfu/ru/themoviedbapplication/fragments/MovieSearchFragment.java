@@ -69,7 +69,7 @@ public class MovieSearchFragment extends Fragment {
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                title = searchBox.getText().toString();
+                title = searchBox.getText().toString().equals("") ? " " : searchBox.getText().toString();
                 updateFragment(title);
             }
         });
@@ -85,19 +85,14 @@ public class MovieSearchFragment extends Fragment {
     }
 
     public void updateFragment(String title) {
-        SearchMovieFragment searchMovieFragment;
-        searchMovieFragment = (SearchMovieFragment) getAsyncFragmentByTag(SEARCH_MOVIE_REQUEST_FRAGMENT);
-        searchMovieFragment.sendRequest(title);
-    }
+        SearchMovieFragment searchMovieFragment = (SearchMovieFragment) getFragmentManager().findFragmentByTag(SEARCH_MOVIE_REQUEST_FRAGMENT);
 
-    public Fragment getAsyncFragmentByTag(String tag) {
-        SearchMovieFragment searchMovieFragment = (SearchMovieFragment) getFragmentManager().findFragmentByTag(tag);
         if (searchMovieFragment == null) {
             searchMovieFragment = new SearchMovieFragment();
             getFragmentManager().beginTransaction()
-                    .add(searchMovieFragment, tag)
+                    .add(searchMovieFragment, SEARCH_MOVIE_REQUEST_FRAGMENT)
                     .commit();
         }
-        return searchMovieFragment;
+        searchMovieFragment.sendRequest(title);
     }
 }

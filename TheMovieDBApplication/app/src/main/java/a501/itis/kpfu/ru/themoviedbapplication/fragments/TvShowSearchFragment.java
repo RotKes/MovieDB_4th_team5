@@ -31,15 +31,21 @@ public class TvShowSearchFragment extends Fragment {
     EditText searchBox;
     Button submit;
     String title;
+    SearchedTvShowListAdapter adapter;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.tv_show_search_fragment, container, false);
         rv = (RecyclerView) view.findViewById(R.id.searched_tv_series_list);
         rv.setLayoutManager(new LinearLayoutManager(rv.getContext()));
-        SearchedTvShowListAdapter adapter = new SearchedTvShowListAdapter(getActivity(), list);
+        adapter = new SearchedTvShowListAdapter(getActivity(), list);
         rv.setAdapter(adapter);
         return view;
+    }
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setRetainInstance(true);
     }
 
     @Override
@@ -60,7 +66,7 @@ public class TvShowSearchFragment extends Fragment {
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                title = searchBox.getText().toString();
+                title = searchBox.getText().toString().equals("") ? " " : searchBox.getText().toString();
                 updateFragment(title);
             }
         });
@@ -75,23 +81,13 @@ public class TvShowSearchFragment extends Fragment {
     }
 
     public void updateFragment(String title) {
-        SearchTvShowFragment searchTvShowFragment;
-        TvShowSearchFragment tvShowSearchFragment = new TvShowSearchFragment();
-        getFragmentManager().beginTransaction()
-                .replace(R.id.contentContainer, tvShowSearchFragment, TvShowSearchFragment.class.getName())
-                .commit();
-        searchTvShowFragment = (SearchTvShowFragment) getAsyncFragmentByTag(SEARCH_TV_SHOW_REQUEST_FRAGMENT);
-        searchTvShowFragment.sendRequest(title);
-    }
-
-    public Fragment getAsyncFragmentByTag(String tag) {
-        SearchTvShowFragment searchTvShowFragment = (SearchTvShowFragment) getFragmentManager().findFragmentByTag(tag);
+        SearchTvShowFragment searchTvShowFragment = (SearchTvShowFragment) getFragmentManager().findFragmentByTag(SEARCH_TV_SHOW_REQUEST_FRAGMENT);
         if (searchTvShowFragment == null) {
             searchTvShowFragment = new SearchTvShowFragment();
             getFragmentManager().beginTransaction()
-                    .add(searchTvShowFragment, tag)
+                    .add(searchTvShowFragment, SEARCH_TV_SHOW_REQUEST_FRAGMENT)
                     .commit();
         }
-        return searchTvShowFragment;
+        searchTvShowFragment.sendRequest(title);
     }
 }
