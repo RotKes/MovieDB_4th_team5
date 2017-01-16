@@ -59,7 +59,7 @@
     <TextView
         android:id="@+id/filmOverview"
         android:textSize="20dp"
-        android:layout_width="230dp"
+        android:layout_width="300dp"
         android:layout_height="match_parent"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true" />
