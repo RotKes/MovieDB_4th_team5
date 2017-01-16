@@ -1,0 +1,62 @@
+package a501.itis.kpfu.ru.themoviedbapplication.async;
+
+import android.os.AsyncTask;
+
+import java.io.IOException;
+import java.util.LinkedList;
+import java.util.List;
+
+import a501.itis.kpfu.ru.themoviedbapplication.apiObjects.fillmsObjects.FilmObject;
+import a501.itis.kpfu.ru.themoviedbapplication.interfaces.API.FilmRequestInterface;
+import a501.itis.kpfu.ru.themoviedbapplication.interfaces.TaskListenerInterface;
+import retrofit2.Call;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
+
+
+public class AsyncRequestFilm extends AsyncTask<Void, Void, Void> {
+    TaskListenerInterface mTaskListener;
+    int id;
+    List<FilmObject> listOfFilms;
+
+    public AsyncRequestFilm (TaskListenerInterface taskListener) {
+        mTaskListener = taskListener;
+    }
+
+    @Override
+    protected void onPreExecute() {
+        super.onPreExecute();
+    }
+
+    @Override
+    protected Void doInBackground(Void... voids) {
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("http://api.themoviedb.org/").addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        FilmRequestInterface server = retrofit.create(FilmRequestInterface.class);
+        Call<FilmObject> film = server.getFilm(id);
+        listOfFilms = new LinkedList();
+        try {
+            listOfFilms.add(0, film.execute().body());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
+    protected void onPostExecute(Void integer) {
+        super.onPostExecute(integer);
+        mTaskListener.onTaskFinish(listOfFilms, 0);
+
+    }
+
+    public void newListener( TaskListenerInterface taskListenerInterface) {
+        mTaskListener = taskListenerInterface;
+    }
+
+    public void setFilmId(int id) {
+        this.id = id;
+    }
+}

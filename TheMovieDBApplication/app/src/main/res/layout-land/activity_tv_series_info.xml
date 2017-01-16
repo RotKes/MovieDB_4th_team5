@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/tvPoster"
+        android:layout_width="180dp"
+        android:layout_height="250dp"
+        />
+
+
+    <TextView
+        android:id="@+id/tvName"
+        android:textStyle="italic"
+        android:textColor="@color/titleColor"
+        android:textSize="@dimen/text_size_film_info"
+        android:layout_width="160dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_toEndOf="@+id/tvPoster" />
+
+    <TextView
+        android:id="@+id/tvYear"
+        android:textSize="@dimen/text_size_film_info"
+        android:textColor="@color/defaultColorText"
+        android:text="RELEASE DATE :"
+        android:layout_width="140dp"
+        android:layout_height="50dp"
+        android:layout_below="@+id/tvName"
+        android:layout_toEndOf="@+id/tvPoster" />
+
+    <TextView
+        android:id="@+id/tvYearValue"
+        android:textSize="@dimen/text_size_film_info"
+        android:layout_width="140dp"
+        android:layout_height="25dp"
+        android:layout_below="@+id/tvYear"
+        android:layout_toEndOf="@+id/tvPoster" />
+
+    <TextView
+        android:id="@+id/tvCountry"
+        android:textSize="@dimen/text_size_film_info"
+        android:text="COUNTRY :"
+        android:textColor="@color/defaultColorText"
+        android:layout_width="140dp"
+        android:layout_height="30dp"
+        android:layout_below="@+id/tvYearValue"
+        android:layout_toEndOf="@+id/tvPoster" />
+
+    <TextView
+        android:id="@+id/tvCountryName"
+        android:textSize="@dimen/text_size_film_info"
+        android:layout_width="140dp"
+        android:layout_height="25dp"
+        android:layout_below="@+id/tvCountry"
+        android:layout_toEndOf="@+id/tvPoster" />
+
+    <TextView
+        android:id="@+id/tvOverview"
+        android:textSize="17dp"
+        android:layout_width="320dp"
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true" />
+
+
+</RelativeLayout>

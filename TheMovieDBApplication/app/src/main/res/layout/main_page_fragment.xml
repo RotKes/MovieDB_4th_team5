@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/defaultColorText"
+        android:text="@string/text_films"
+        android:typeface="monospace"
+        android:textSize="@dimen/size_for_strings"
+        android:textAlignment="center"/>
+
+    <FrameLayout
+        android:layout_margin="@dimen/margin_item"
+        android:id="@+id/moviesContainer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/colorLine"></View>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/defaultColorText"
+        android:text="@string/text_tv_series"
+        android:typeface="monospace"
+        android:textSize="@dimen/size_for_strings"
+        android:textAlignment="center"/>
+
+    <FrameLayout
+        android:layout_margin="@dimen/margin_item"
+        android:id="@+id/tvSeriesContainer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"/>
+
+</LinearLayout>
